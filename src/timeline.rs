@@ -81,7 +81,7 @@ impl<Manager> Timeline<Manager> {
         let description = CString::new(description).unwrap();
 
         unsafe {
-            sys::SteamAPI_ISteamTimeline_SetTimelineStateDescription(
+            sys::SteamAPI_ISteamTimeline_SetTimelineTooltip(
                 self.timeline,
                 description.as_ptr(),
                 duration.as_secs_f32(),
@@ -96,10 +96,7 @@ impl<Manager> Timeline<Manager> {
         }
 
         unsafe {
-            sys::SteamAPI_ISteamTimeline_ClearTimelineStateDescription(
-                self.timeline,
-                duration.as_secs_f32(),
-            )
+            sys::SteamAPI_ISteamTimeline_ClearTimelineTooltip(self.timeline, duration.as_secs_f32())
         }
     }
 
@@ -113,7 +110,6 @@ impl<Manager> Timeline<Manager> {
         description: &str,
         priority: u32,
         start_offset_seconds: f32,
-        duration: Duration,
         clip_priority: TimelineEventClipPriority,
     ) {
         if self.disabled {
@@ -123,19 +119,17 @@ impl<Manager> Timeline<Manager> {
         let icon = CString::new(icon).unwrap();
         let title = CString::new(title).unwrap();
         let description = CString::new(description).unwrap();
-        let duration = duration.as_secs_f32();
 
         unsafe {
-            sys::SteamAPI_ISteamTimeline_AddTimelineEvent(
+            sys::SteamAPI_ISteamTimeline_AddInstantaneousTimelineEvent(
                 self.timeline,
                 icon.as_ptr(),
                 title.as_ptr(),
                 description.as_ptr(),
                 priority,
                 start_offset_seconds,
-                duration,
                 clip_priority.into(),
-            )
+            );
         }
     }
 }

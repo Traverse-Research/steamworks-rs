@@ -368,7 +368,7 @@ where
     /// Returns an accessor to the steam user stats interface
     pub fn user_stats(&self) -> UserStats<Manager> {
         unsafe {
-            let us = sys::SteamAPI_SteamUserStats_v012();
+            let us = sys::SteamAPI_SteamUserStats_v013();
             debug_assert!(!us.is_null());
             UserStats {
                 user_stats: us,
@@ -431,7 +431,7 @@ where
     /// Returns an accessor to the steam timeline interface
     pub fn timeline(&self) -> Timeline<Manager> {
         unsafe {
-            let timeline = sys::SteamAPI_SteamTimeline_v001();
+            let timeline = sys::SteamAPI_SteamTimeline_v004();
 
             Timeline {
                 timeline,
