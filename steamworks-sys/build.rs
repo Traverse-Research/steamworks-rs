@@ -1,64 +1,61 @@
+//! Generates bindings for steamworks sdk (1.61)
+//!
+//! The steamworks dynamic library is copied to the target directory upon invoking this build script. A
+//! user is expected to load the dynamic library at runtime using `libloading` crate.
+
 #[cfg(feature = "rebuild-bindings")]
 extern crate bindgen;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    use std::env;
-    use std::fs::{self};
-    use std::path::{Path, PathBuf};
+    let out_dir = std::env::var("OUT_DIR").unwrap();
 
-    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
-    let sdk_loc = if let Ok(sdk_loc) = env::var("STEAM_SDK_LOCATION") {
-        Path::new(&sdk_loc).to_path_buf()
+    // https://github.com/rust-lang/cargo/issues/9661
+    // Typically points to: $PROJECT/$TARGET_DIR/(x86_64-pc-windows-msvc/)$PROFILE/build/project-495fd7493ea5486b/out
+    // CARGO_(BUILD_)TARGET_DIR is only set by the `cargo` user, `cargo` itself **DOES NOT** set it
+    // when the user passes --target-dir: https://doc.rust-lang.org/cargo/reference/config.html#buildtarget-dir
+    let target_dir = std::path::Path::new(&out_dir).join("../../..");
+
+    let sdk_src = if let Ok(sdk_loc) = std::env::var("STEAM_SDK_LOCATION") {
+        std::path::Path::new(&sdk_loc).to_path_buf()
     } else {
-        let mut path = PathBuf::new();
-        path.push(env::var("CARGO_MANIFEST_DIR").unwrap());
+        let mut path = std::path::PathBuf::new();
+        path.push(std::env::var("CARGO_MANIFEST_DIR").unwrap());
         path.push("lib");
         path.push("steam");
         path
     };
     println!("cargo:rerun-if-env-changed=STEAM_SDK_LOCATION");
 
-    let triple = env::var("TARGET").unwrap();
-    let mut lib = "steam_api";
-    let mut link_path = sdk_loc.join("redistributable_bin");
-    if triple.contains("windows") {
-        if !triple.contains("i686") {
-            lib = "steam_api64";
-            link_path.push("win64");
-        }
-    } else if triple.contains("linux") {
-        if triple.contains("i686") {
-            link_path.push("linux32");
+    let triple = std::env::var("TARGET").unwrap();
+
+    let dylib_src = sdk_src.join("redistributable_bin").join({
+        if triple.contains("windows") {
+            if !triple.contains("i686") {
+                "win64/steam_api64.dll"
+            } else {
+                panic!("Unsupported OS");
+            }
+        } else if triple.contains("linux") {
+            if triple.contains("i686") {
+                "linux32/libsteam_api.so"
+            } else {
+                "linux64/libsteam_api.so"
+            }
+        } else if triple.contains("darwin") {
+            "osx/libsteam_api.dylib"
         } else {
-            link_path.push("linux64");
+            panic!("Unsupported OS");
         }
-    } else if triple.contains("darwin") {
-        link_path.push("osx");
-    } else {
-        panic!("Unsupported OS");
-    };
+    });
 
-    if triple.contains("windows") {
-        let dll_file = format!("{}.dll", lib);
-        let lib_file = format!("{}.lib", lib);
-        fs::copy(link_path.join(&dll_file), out_path.join(dll_file))?;
-        fs::copy(link_path.join(&lib_file), out_path.join(lib_file))?;
-    } else if triple.contains("darwin") {
-        fs::copy(
-            link_path.join("libsteam_api.dylib"),
-            out_path.join("libsteam_api.dylib"),
-        )?;
-    } else if triple.contains("linux") {
-        fs::copy(
-            link_path.join("libsteam_api.so"),
-            out_path.join("libsteam_api.so"),
-        )?;
-    }
+    // let mut dylib_dst = target_dir.join("libsteam_api");
+    // dylib_dst.set_extension(dylib_src.extension().unwrap());
 
-    println!("cargo:rustc-link-search={}", out_path.display());
-    println!("cargo:rustc-link-lib=dylib={}", lib);
+    dbg!(&target_dir);
 
-    #[cfg(feature = "rebuild-bindings")]
+    std::fs::copy(&dylib_src, target_dir.join(dylib_src.file_name().unwrap())).unwrap();
+
+    //#[cfg(feature = "rebuild-bindings")]
     {
         let target_os = if triple.contains("windows") {
             "windows"
@@ -69,21 +66,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         } else {
             panic!("Unsupported OS");
         };
-        let binding_path = Path::new(&format!("src/{}_bindings.rs", target_os)).to_owned();
+        let binding_path =
+            std::path::Path::new(&format!("src/{}_bindings.rs", target_os)).to_owned();
         let bindings = bindgen::Builder::default()
             .header(
-                sdk_loc
+                sdk_src
                     .join("public/steam/steam_api_flat.h")
                     .to_string_lossy(),
             )
             .header(
-                sdk_loc
+                sdk_src
                     .join("public/steam/steam_gameserver.h")
                     .to_string_lossy(),
             )
+            .allowlist_function("Steam\\w+")
+            .dynamic_library_name("steam_api")
             .clang_arg("-xc++")
             .clang_arg("-std=c++11")
-            .clang_arg(format!("-I{}", sdk_loc.join("public").display()))
+            .clang_arg(format!("-I{}", sdk_src.join("public").display()))
             .rustfmt_bindings(true)
             .default_enum_style(bindgen::EnumVariation::Rust {
                 non_exhaustive: true,
