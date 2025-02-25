@@ -1,23 +1,22 @@
 #[macro_use]
 extern crate thiserror;
-#[macro_use]
-extern crate bitflags;
-#[macro_use]
-extern crate lazy_static;
+// #[macro_use]
+// extern crate bitflags;
+// #[macro_use]
+// extern crate lazy_static;
 
 // use screenshots::Screenshots;
 #[cfg(feature = "raw-bindings")]
 pub use steamworks_sys as sys;
 #[cfg(not(feature = "raw-bindings"))]
 use steamworks_sys as sys;
-use sys::{EServerMode, ESteamAPIInitResult, SteamErrMsg};
+use sys::{ESteamAPIInitResult, SteamErrMsg};
 
 use core::ffi::c_void;
 use std::collections::HashMap;
-use std::ffi::{c_char, CStr, CString};
-use std::fmt::{self, Debug, Formatter};
-use std::sync::mpsc::Sender;
-use std::sync::{Arc, Mutex, Weak};
+use std::ffi::CStr;
+use std::fmt::Debug;
+use std::sync::{Arc, Mutex};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -25,19 +24,19 @@ use serde::{Deserialize, Serialize};
 pub use crate::app::*;
 pub use crate::callback::*;
 pub use crate::error::*;
-pub use crate::friends::*;
-pub use crate::input::*;
-pub use crate::matchmaking::*;
-pub use crate::matchmaking_servers::*;
-pub use crate::networking::*;
-pub use crate::remote_play::*;
-pub use crate::remote_storage::*;
-pub use crate::server::*;
-pub use crate::timeline::*;
-pub use crate::ugc::*;
-pub use crate::user::*;
-pub use crate::user_stats::*;
-pub use crate::utils::*;
+// pub use crate::friends::*;
+// pub use crate::input::*;
+// pub use crate::matchmaking::*;
+// pub use crate::matchmaking_servers::*;
+// pub use crate::networking::*;
+// pub use crate::remote_play::*;
+// pub use crate::remote_storage::*;
+// pub use crate::server::*;
+// pub use crate::timeline::*;
+// pub use crate::ugc::*;
+// pub use crate::user::*;
+// pub use crate::user_stats::*;
+// pub use crate::utils::*;
 
 mod app;
 mod callback;

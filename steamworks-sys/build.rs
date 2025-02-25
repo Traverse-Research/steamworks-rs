@@ -48,14 +48,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
-    // let mut dylib_dst = target_dir.join("libsteam_api");
-    // dylib_dst.set_extension(dylib_src.extension().unwrap());
-
-    dbg!(&target_dir);
-
     std::fs::copy(&dylib_src, target_dir.join(dylib_src.file_name().unwrap())).unwrap();
 
-    //#[cfg(feature = "rebuild-bindings")]
+    #[cfg(feature = "rebuild-bindings")]
     {
         let target_os = if triple.contains("windows") {
             "windows"
@@ -79,12 +74,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .join("public/steam/steam_gameserver.h")
                     .to_string_lossy(),
             )
-            .allowlist_function("Steam\\w+")
+            .allowlist_item("SteamAPI\\w+")
             .dynamic_library_name("steam_api")
             .clang_arg("-xc++")
             .clang_arg("-std=c++11")
             .clang_arg(format!("-I{}", sdk_src.join("public").display()))
-            .rustfmt_bindings(true)
             .default_enum_style(bindgen::EnumVariation::Rust {
                 non_exhaustive: true,
             })

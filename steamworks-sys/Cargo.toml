@@ -12,10 +12,10 @@ rust-version = "1.73.0"
 
 [features]
 default = []
-# rebuild-bindings = ["bindgen"]
+rebuild-bindings = ["bindgen"]
 
 [dependencies]
 libloading = { version = "0.8", default-features = false } 
 
 [build-dependencies]
-bindgen = { version = "0.69.2" }
+bindgen = { version = "0.71" , optional = true }
