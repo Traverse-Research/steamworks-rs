@@ -126,6 +126,14 @@ unsafe impl<Manager: Send + Sync> Sync for Client<Manager> {}
 //     unsafe { sys::SteamAPI_RestartAppIfNecessary(app_id.0) }
 // }
 
+// TODO: docs
+pub fn steam_library_path() -> std::path::PathBuf {
+    let lib_name = libloading::library_filename("steam_api64");
+
+    let exe_path = std::env::current_exe().unwrap();
+    exe_path.parent().unwrap().join(lib_name)
+}
+
 fn static_assert_send<T: Send>() {}
 fn static_assert_sync<T>()
 where
@@ -164,8 +172,7 @@ impl Client<ClientManager> {
     /// * The user doesn't own a license for the game.
     /// * The app ID isn't completely set up.
     pub fn init() -> SIResult<Client<ClientManager>> {
-        let lib_name = libloading::library_filename("steam_api");
-        let lib = Arc::new(unsafe { sys::steam_api::new(lib_name).unwrap() });
+        let lib = Arc::new(unsafe { sys::steam_api::new(steam_library_path()).unwrap() });
 
         static_assert_send::<Client<ClientManager>>();
         static_assert_sync::<Client<ClientManager>>();
