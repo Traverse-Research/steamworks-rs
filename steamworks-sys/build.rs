@@ -31,7 +31,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let dylib_src = sdk_src.join("redistributable_bin").join({
         if triple.contains("windows") {
             if !triple.contains("i686") {
-                "win64/steam_api64.dll"
+                "win64/steam_api.dll"
             } else {
                 panic!("Unsupported OS");
             }
