@@ -11,6 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
+        target: [x86_64-pc-windows-gnu, "x86_64-unknown-linux-gnu", "x86_64-apple-darwin"]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -20,6 +21,7 @@ jobs:
         id: toolchain
         with:
           toolchain: stable
+          target: ${{ matrix.target }}
           profile: minimal
           components: rustfmt, clippy
           override: true
