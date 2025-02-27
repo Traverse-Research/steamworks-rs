@@ -128,7 +128,7 @@ unsafe impl<Manager: Send + Sync> Sync for Client<Manager> {}
 
 // TODO: docs
 pub fn steam_library_path() -> std::path::PathBuf {
-    let lib_name = libloading::library_filename("steam_api64");
+    let lib_name = libloading::library_filename("steam_api");
 
     let exe_path = std::env::current_exe().unwrap();
     exe_path.parent().unwrap().join(lib_name)
