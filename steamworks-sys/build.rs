@@ -21,6 +21,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let triple = std::env::var("TARGET").unwrap();
 
+    dbg!("TARGET TRIPLE: {triple}");
+
     let dylib_src = sdk_src.join("redistributable_bin").join({
         if triple.contains("windows") {
             if !triple.contains("i686") {
