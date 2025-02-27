@@ -170,26 +170,6 @@ pub union SteamIPAddress_t__bindgen_ty_1 {
     pub m_rgubIPv6: [uint8; 16usize],
     pub m_ipv6Qword: [uint64; 2usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamIPAddress_t__bindgen_ty_1"]
-        [::std::mem::size_of::<SteamIPAddress_t__bindgen_ty_1>() - 16usize];
-    ["Alignment of SteamIPAddress_t__bindgen_ty_1"]
-        [::std::mem::align_of::<SteamIPAddress_t__bindgen_ty_1>() - 1usize];
-    ["Offset of field: SteamIPAddress_t__bindgen_ty_1::m_unIPv4"]
-        [::std::mem::offset_of!(SteamIPAddress_t__bindgen_ty_1, m_unIPv4) - 0usize];
-    ["Offset of field: SteamIPAddress_t__bindgen_ty_1::m_rgubIPv6"]
-        [::std::mem::offset_of!(SteamIPAddress_t__bindgen_ty_1, m_rgubIPv6) - 0usize];
-    ["Offset of field: SteamIPAddress_t__bindgen_ty_1::m_ipv6Qword"]
-        [::std::mem::offset_of!(SteamIPAddress_t__bindgen_ty_1, m_ipv6Qword) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamIPAddress_t"][::std::mem::size_of::<SteamIPAddress_t>() - 20usize];
-    ["Alignment of SteamIPAddress_t"][::std::mem::align_of::<SteamIPAddress_t>() - 1usize];
-    ["Offset of field: SteamIPAddress_t::m_eType"]
-        [::std::mem::offset_of!(SteamIPAddress_t, m_eType) - 16usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -441,13 +421,6 @@ pub struct CSteamID_SteamID_t_SteamIDComponent_t {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 8usize]>,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CSteamID_SteamID_t_SteamIDComponent_t"]
-        [::std::mem::size_of::<CSteamID_SteamID_t_SteamIDComponent_t>() - 8usize];
-    ["Alignment of CSteamID_SteamID_t_SteamIDComponent_t"]
-        [::std::mem::align_of::<CSteamID_SteamID_t_SteamIDComponent_t>() - 1usize];
-};
 impl CSteamID_SteamID_t_SteamIDComponent_t {
     #[inline]
     pub fn m_unAccountID(&self) -> uint32 {
@@ -608,21 +581,6 @@ impl CSteamID_SteamID_t_SteamIDComponent_t {
         __bindgen_bitfield_unit
     }
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CSteamID_SteamID_t"][::std::mem::size_of::<CSteamID_SteamID_t>() - 8usize];
-    ["Alignment of CSteamID_SteamID_t"][::std::mem::align_of::<CSteamID_SteamID_t>() - 1usize];
-    ["Offset of field: CSteamID_SteamID_t::m_comp"]
-        [::std::mem::offset_of!(CSteamID_SteamID_t, m_comp) - 0usize];
-    ["Offset of field: CSteamID_SteamID_t::m_unAll64Bits"]
-        [::std::mem::offset_of!(CSteamID_SteamID_t, m_unAll64Bits) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CSteamID"][::std::mem::size_of::<CSteamID>() - 8usize];
-    ["Alignment of CSteamID"][::std::mem::align_of::<CSteamID>() - 1usize];
-    ["Offset of field: CSteamID::m_steamid"][::std::mem::offset_of!(CSteamID, m_steamid) - 0usize];
-};
 unsafe extern "C" {
     #[link_name = "\u{1}?Render@CSteamID@@QEBAPEBDXZ"]
     pub fn CSteamID_Render(this: *const CSteamID) -> *const ::std::os::raw::c_char;
@@ -718,11 +676,6 @@ pub struct CGameID_GameID_t {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 8usize]>,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CGameID_GameID_t"][::std::mem::size_of::<CGameID_GameID_t>() - 8usize];
-    ["Alignment of CGameID_GameID_t"][::std::mem::align_of::<CGameID_GameID_t>() - 1usize];
-};
 impl CGameID_GameID_t {
     #[inline]
     pub fn m_nAppID(&self) -> ::std::os::raw::c_uint {
@@ -851,21 +804,6 @@ pub union CGameID__bindgen_ty_1 {
     pub m_ulGameID: uint64,
     pub m_gameID: CGameID_GameID_t,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CGameID__bindgen_ty_1"][::std::mem::size_of::<CGameID__bindgen_ty_1>() - 8usize];
-    ["Alignment of CGameID__bindgen_ty_1"]
-        [::std::mem::align_of::<CGameID__bindgen_ty_1>() - 1usize];
-    ["Offset of field: CGameID__bindgen_ty_1::m_ulGameID"]
-        [::std::mem::offset_of!(CGameID__bindgen_ty_1, m_ulGameID) - 0usize];
-    ["Offset of field: CGameID__bindgen_ty_1::m_gameID"]
-        [::std::mem::offset_of!(CGameID__bindgen_ty_1, m_gameID) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CGameID"][::std::mem::size_of::<CGameID>() - 8usize];
-    ["Alignment of CGameID"][::std::mem::align_of::<CGameID>() - 1usize];
-};
 unsafe extern "C" {
     #[link_name = "\u{1}?Render@CGameID@@QEBAPEBDXZ"]
     pub fn CGameID_Render(this: *const CGameID) -> *const ::std::os::raw::c_char;
@@ -962,15 +900,6 @@ pub enum CCallbackBase__bindgen_ty_1 {
     k_ECallbackFlagsRegistered = 1,
     k_ECallbackFlagsGameServer = 2,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CCallbackBase"][::std::mem::size_of::<CCallbackBase>() - 16usize];
-    ["Alignment of CCallbackBase"][::std::mem::align_of::<CCallbackBase>() - 8usize];
-    ["Offset of field: CCallbackBase::m_nCallbackFlags"]
-        [::std::mem::offset_of!(CCallbackBase, m_nCallbackFlags) - 8usize];
-    ["Offset of field: CCallbackBase::m_iCallback"]
-        [::std::mem::offset_of!(CCallbackBase, m_iCallback) - 12usize];
-};
 #[doc = " Internal structure used in manual callback dispatch"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -980,19 +909,6 @@ pub struct CallbackMsg_t {
     pub m_pubParam: *mut uint8,
     pub m_cubParam: ::std::os::raw::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of CallbackMsg_t"][::std::mem::size_of::<CallbackMsg_t>() - 24usize];
-    ["Alignment of CallbackMsg_t"][::std::mem::align_of::<CallbackMsg_t>() - 8usize];
-    ["Offset of field: CallbackMsg_t::m_hSteamUser"]
-        [::std::mem::offset_of!(CallbackMsg_t, m_hSteamUser) - 0usize];
-    ["Offset of field: CallbackMsg_t::m_iCallback"]
-        [::std::mem::offset_of!(CallbackMsg_t, m_iCallback) - 4usize];
-    ["Offset of field: CallbackMsg_t::m_pubParam"]
-        [::std::mem::offset_of!(CallbackMsg_t, m_pubParam) - 8usize];
-    ["Offset of field: CallbackMsg_t::m_cubParam"]
-        [::std::mem::offset_of!(CallbackMsg_t, m_cubParam) - 16usize];
-};
 #[repr(C)]
 pub struct ISteamClient__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1000,11 +916,6 @@ pub struct ISteamClient__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamClient {
     pub vtable_: *const ISteamClient__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamClient"][::std::mem::size_of::<ISteamClient>() - 8usize];
-    ["Alignment of ISteamClient"][::std::mem::align_of::<ISteamClient>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamUser__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1012,11 +923,6 @@ pub struct ISteamUser__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamUser {
     pub vtable_: *const ISteamUser__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamUser"][::std::mem::size_of::<ISteamUser>() - 8usize];
-    ["Alignment of ISteamUser"][::std::mem::align_of::<ISteamUser>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1055,21 +961,6 @@ pub struct FriendGameInfo_t {
     pub m_usQueryPort: uint16,
     pub m_steamIDLobby: CSteamID,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of FriendGameInfo_t"][::std::mem::size_of::<FriendGameInfo_t>() - 24usize];
-    ["Alignment of FriendGameInfo_t"][::std::mem::align_of::<FriendGameInfo_t>() - 4usize];
-    ["Offset of field: FriendGameInfo_t::m_gameID"]
-        [::std::mem::offset_of!(FriendGameInfo_t, m_gameID) - 0usize];
-    ["Offset of field: FriendGameInfo_t::m_unGameIP"]
-        [::std::mem::offset_of!(FriendGameInfo_t, m_unGameIP) - 8usize];
-    ["Offset of field: FriendGameInfo_t::m_usGamePort"]
-        [::std::mem::offset_of!(FriendGameInfo_t, m_usGamePort) - 12usize];
-    ["Offset of field: FriendGameInfo_t::m_usQueryPort"]
-        [::std::mem::offset_of!(FriendGameInfo_t, m_usQueryPort) - 14usize];
-    ["Offset of field: FriendGameInfo_t::m_steamIDLobby"]
-        [::std::mem::offset_of!(FriendGameInfo_t, m_steamIDLobby) - 16usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1119,11 +1010,6 @@ pub struct ISteamFriends__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamFriends {
     pub vtable_: *const ISteamFriends__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamFriends"][::std::mem::size_of::<ISteamFriends>() - 8usize];
-    ["Alignment of ISteamFriends"][::std::mem::align_of::<ISteamFriends>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1173,11 +1059,6 @@ pub struct ISteamUtils__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamUtils {
     pub vtable_: *const ISteamUtils__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamUtils"][::std::mem::size_of::<ISteamUtils>() - 8usize];
-    ["Alignment of ISteamUtils"][::std::mem::align_of::<ISteamUtils>() - 8usize];
-};
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct SteamAPICallCompleted_t {
@@ -1193,18 +1074,6 @@ pub const SteamAPICallCompleted_t_k_iCallback: SteamAPICallCompleted_t__bindgen_
 pub enum SteamAPICallCompleted_t__bindgen_ty_1 {
     k_iCallback = 703,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamAPICallCompleted_t"][::std::mem::size_of::<SteamAPICallCompleted_t>() - 16usize];
-    ["Alignment of SteamAPICallCompleted_t"]
-        [::std::mem::align_of::<SteamAPICallCompleted_t>() - 8usize];
-    ["Offset of field: SteamAPICallCompleted_t::m_hAsyncCall"]
-        [::std::mem::offset_of!(SteamAPICallCompleted_t, m_hAsyncCall) - 0usize];
-    ["Offset of field: SteamAPICallCompleted_t::m_iCallback"]
-        [::std::mem::offset_of!(SteamAPICallCompleted_t, m_iCallback) - 8usize];
-    ["Offset of field: SteamAPICallCompleted_t::m_cubParam"]
-        [::std::mem::offset_of!(SteamAPICallCompleted_t, m_cubParam) - 12usize];
-};
 #[doc = " Store key/value pair used in matchmaking queries.\n\n Actually, the name Key/Value is a bit misleading.  The \"key\" is better\n understood as \"filter operation code\" and the \"value\" is the operand to this\n filter operation.  The meaning of the operand depends upon the filter."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1212,17 +1081,6 @@ pub struct MatchMakingKeyValuePair_t {
     pub m_szKey: [::std::os::raw::c_char; 256usize],
     pub m_szValue: [::std::os::raw::c_char; 256usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MatchMakingKeyValuePair_t"]
-        [::std::mem::size_of::<MatchMakingKeyValuePair_t>() - 512usize];
-    ["Alignment of MatchMakingKeyValuePair_t"]
-        [::std::mem::align_of::<MatchMakingKeyValuePair_t>() - 1usize];
-    ["Offset of field: MatchMakingKeyValuePair_t::m_szKey"]
-        [::std::mem::offset_of!(MatchMakingKeyValuePair_t, m_szKey) - 0usize];
-    ["Offset of field: MatchMakingKeyValuePair_t::m_szValue"]
-        [::std::mem::offset_of!(MatchMakingKeyValuePair_t, m_szValue) - 256usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1238,17 +1096,6 @@ pub struct servernetadr_t {
     pub m_usQueryPort: uint16,
     pub m_unIP: uint32,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of servernetadr_t"][::std::mem::size_of::<servernetadr_t>() - 8usize];
-    ["Alignment of servernetadr_t"][::std::mem::align_of::<servernetadr_t>() - 4usize];
-    ["Offset of field: servernetadr_t::m_usConnectionPort"]
-        [::std::mem::offset_of!(servernetadr_t, m_usConnectionPort) - 0usize];
-    ["Offset of field: servernetadr_t::m_usQueryPort"]
-        [::std::mem::offset_of!(servernetadr_t, m_usQueryPort) - 2usize];
-    ["Offset of field: servernetadr_t::m_unIP"]
-        [::std::mem::offset_of!(servernetadr_t, m_unIP) - 4usize];
-};
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct gameserveritem_t {
@@ -1289,47 +1136,6 @@ pub struct gameserveritem_t {
     #[doc = " steamID of the game server - invalid if it's doesn't have one (old server, or not connected to Steam)"]
     pub m_steamID: CSteamID,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of gameserveritem_t"][::std::mem::size_of::<gameserveritem_t>() - 372usize];
-    ["Alignment of gameserveritem_t"][::std::mem::align_of::<gameserveritem_t>() - 4usize];
-    ["Offset of field: gameserveritem_t::m_NetAdr"]
-        [::std::mem::offset_of!(gameserveritem_t, m_NetAdr) - 0usize];
-    ["Offset of field: gameserveritem_t::m_nPing"]
-        [::std::mem::offset_of!(gameserveritem_t, m_nPing) - 8usize];
-    ["Offset of field: gameserveritem_t::m_bHadSuccessfulResponse"]
-        [::std::mem::offset_of!(gameserveritem_t, m_bHadSuccessfulResponse) - 12usize];
-    ["Offset of field: gameserveritem_t::m_bDoNotRefresh"]
-        [::std::mem::offset_of!(gameserveritem_t, m_bDoNotRefresh) - 13usize];
-    ["Offset of field: gameserveritem_t::m_szGameDir"]
-        [::std::mem::offset_of!(gameserveritem_t, m_szGameDir) - 14usize];
-    ["Offset of field: gameserveritem_t::m_szMap"]
-        [::std::mem::offset_of!(gameserveritem_t, m_szMap) - 46usize];
-    ["Offset of field: gameserveritem_t::m_szGameDescription"]
-        [::std::mem::offset_of!(gameserveritem_t, m_szGameDescription) - 78usize];
-    ["Offset of field: gameserveritem_t::m_nAppID"]
-        [::std::mem::offset_of!(gameserveritem_t, m_nAppID) - 144usize];
-    ["Offset of field: gameserveritem_t::m_nPlayers"]
-        [::std::mem::offset_of!(gameserveritem_t, m_nPlayers) - 148usize];
-    ["Offset of field: gameserveritem_t::m_nMaxPlayers"]
-        [::std::mem::offset_of!(gameserveritem_t, m_nMaxPlayers) - 152usize];
-    ["Offset of field: gameserveritem_t::m_nBotPlayers"]
-        [::std::mem::offset_of!(gameserveritem_t, m_nBotPlayers) - 156usize];
-    ["Offset of field: gameserveritem_t::m_bPassword"]
-        [::std::mem::offset_of!(gameserveritem_t, m_bPassword) - 160usize];
-    ["Offset of field: gameserveritem_t::m_bSecure"]
-        [::std::mem::offset_of!(gameserveritem_t, m_bSecure) - 161usize];
-    ["Offset of field: gameserveritem_t::m_ulTimeLastPlayed"]
-        [::std::mem::offset_of!(gameserveritem_t, m_ulTimeLastPlayed) - 164usize];
-    ["Offset of field: gameserveritem_t::m_nServerVersion"]
-        [::std::mem::offset_of!(gameserveritem_t, m_nServerVersion) - 168usize];
-    ["Offset of field: gameserveritem_t::m_szServerName"]
-        [::std::mem::offset_of!(gameserveritem_t, m_szServerName) - 172usize];
-    ["Offset of field: gameserveritem_t::m_szGameTags"]
-        [::std::mem::offset_of!(gameserveritem_t, m_szGameTags) - 236usize];
-    ["Offset of field: gameserveritem_t::m_steamID"]
-        [::std::mem::offset_of!(gameserveritem_t, m_steamID) - 364usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1367,11 +1173,6 @@ pub struct ISteamMatchmaking__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamMatchmaking {
     pub vtable_: *const ISteamMatchmaking__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMatchmaking"][::std::mem::size_of::<ISteamMatchmaking>() - 8usize];
-    ["Alignment of ISteamMatchmaking"][::std::mem::align_of::<ISteamMatchmaking>() - 8usize];
-};
 pub type HServerListRequest = *mut ::std::os::raw::c_void;
 #[repr(C)]
 pub struct ISteamMatchmakingServerListResponse__bindgen_vtable(::std::os::raw::c_void);
@@ -1380,13 +1181,6 @@ pub struct ISteamMatchmakingServerListResponse__bindgen_vtable(::std::os::raw::c
 pub struct ISteamMatchmakingServerListResponse {
     pub vtable_: *const ISteamMatchmakingServerListResponse__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMatchmakingServerListResponse"]
-        [::std::mem::size_of::<ISteamMatchmakingServerListResponse>() - 8usize];
-    ["Alignment of ISteamMatchmakingServerListResponse"]
-        [::std::mem::align_of::<ISteamMatchmakingServerListResponse>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamMatchmakingPingResponse__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1394,13 +1188,6 @@ pub struct ISteamMatchmakingPingResponse__bindgen_vtable(::std::os::raw::c_void)
 pub struct ISteamMatchmakingPingResponse {
     pub vtable_: *const ISteamMatchmakingPingResponse__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMatchmakingPingResponse"]
-        [::std::mem::size_of::<ISteamMatchmakingPingResponse>() - 8usize];
-    ["Alignment of ISteamMatchmakingPingResponse"]
-        [::std::mem::align_of::<ISteamMatchmakingPingResponse>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamMatchmakingPlayersResponse__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1408,13 +1195,6 @@ pub struct ISteamMatchmakingPlayersResponse__bindgen_vtable(::std::os::raw::c_vo
 pub struct ISteamMatchmakingPlayersResponse {
     pub vtable_: *const ISteamMatchmakingPlayersResponse__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMatchmakingPlayersResponse"]
-        [::std::mem::size_of::<ISteamMatchmakingPlayersResponse>() - 8usize];
-    ["Alignment of ISteamMatchmakingPlayersResponse"]
-        [::std::mem::align_of::<ISteamMatchmakingPlayersResponse>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamMatchmakingRulesResponse__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1422,13 +1202,6 @@ pub struct ISteamMatchmakingRulesResponse__bindgen_vtable(::std::os::raw::c_void
 pub struct ISteamMatchmakingRulesResponse {
     pub vtable_: *const ISteamMatchmakingRulesResponse__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMatchmakingRulesResponse"]
-        [::std::mem::size_of::<ISteamMatchmakingRulesResponse>() - 8usize];
-    ["Alignment of ISteamMatchmakingRulesResponse"]
-        [::std::mem::align_of::<ISteamMatchmakingRulesResponse>() - 8usize];
-};
 pub type HServerQuery = ::std::os::raw::c_int;
 #[repr(C)]
 pub struct ISteamMatchmakingServers__bindgen_vtable(::std::os::raw::c_void);
@@ -1437,13 +1210,6 @@ pub struct ISteamMatchmakingServers__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamMatchmakingServers {
     pub vtable_: *const ISteamMatchmakingServers__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMatchmakingServers"]
-        [::std::mem::size_of::<ISteamMatchmakingServers>() - 8usize];
-    ["Alignment of ISteamMatchmakingServers"]
-        [::std::mem::align_of::<ISteamMatchmakingServers>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamGameSearch__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1451,11 +1217,6 @@ pub struct ISteamGameSearch__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamGameSearch {
     pub vtable_: *const ISteamGameSearch__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamGameSearch"][::std::mem::size_of::<ISteamGameSearch>() - 8usize];
-    ["Alignment of ISteamGameSearch"][::std::mem::align_of::<ISteamGameSearch>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1470,17 +1231,6 @@ pub struct SteamPartyBeaconLocation_t {
     pub m_eType: ESteamPartyBeaconLocationType,
     pub m_ulLocationID: uint64,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamPartyBeaconLocation_t"]
-        [::std::mem::size_of::<SteamPartyBeaconLocation_t>() - 16usize];
-    ["Alignment of SteamPartyBeaconLocation_t"]
-        [::std::mem::align_of::<SteamPartyBeaconLocation_t>() - 8usize];
-    ["Offset of field: SteamPartyBeaconLocation_t::m_eType"]
-        [::std::mem::offset_of!(SteamPartyBeaconLocation_t, m_eType) - 0usize];
-    ["Offset of field: SteamPartyBeaconLocation_t::m_ulLocationID"]
-        [::std::mem::offset_of!(SteamPartyBeaconLocation_t, m_ulLocationID) - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1498,27 +1248,12 @@ pub struct ISteamParties__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamParties {
     pub vtable_: *const ISteamParties__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamParties"][::std::mem::size_of::<ISteamParties>() - 8usize];
-    ["Alignment of ISteamParties"][::std::mem::align_of::<ISteamParties>() - 8usize];
-};
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct SteamParamStringArray_t {
     pub m_ppStrings: *mut *const ::std::os::raw::c_char,
     pub m_nNumStrings: int32,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamParamStringArray_t"][::std::mem::size_of::<SteamParamStringArray_t>() - 16usize];
-    ["Alignment of SteamParamStringArray_t"]
-        [::std::mem::align_of::<SteamParamStringArray_t>() - 8usize];
-    ["Offset of field: SteamParamStringArray_t::m_ppStrings"]
-        [::std::mem::offset_of!(SteamParamStringArray_t, m_ppStrings) - 0usize];
-    ["Offset of field: SteamParamStringArray_t::m_nNumStrings"]
-        [::std::mem::offset_of!(SteamParamStringArray_t, m_nNumStrings) - 8usize];
-};
 pub type UGCHandle_t = uint64;
 pub type PublishedFileUpdateHandle_t = uint64;
 pub type PublishedFileId_t = uint64;
@@ -1630,11 +1365,6 @@ pub struct ISteamRemoteStorage__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamRemoteStorage {
     pub vtable_: *const ISteamRemoteStorage__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamRemoteStorage"][::std::mem::size_of::<ISteamRemoteStorage>() - 8usize];
-    ["Alignment of ISteamRemoteStorage"][::std::mem::align_of::<ISteamRemoteStorage>() - 8usize];
-};
 pub type SteamLeaderboard_t = uint64;
 pub type SteamLeaderboardEntries_t = uint64;
 #[repr(i32)]
@@ -1680,21 +1410,6 @@ pub struct LeaderboardEntry_t {
     pub m_cDetails: int32,
     pub m_hUGC: UGCHandle_t,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of LeaderboardEntry_t"][::std::mem::size_of::<LeaderboardEntry_t>() - 32usize];
-    ["Alignment of LeaderboardEntry_t"][::std::mem::align_of::<LeaderboardEntry_t>() - 8usize];
-    ["Offset of field: LeaderboardEntry_t::m_steamIDUser"]
-        [::std::mem::offset_of!(LeaderboardEntry_t, m_steamIDUser) - 0usize];
-    ["Offset of field: LeaderboardEntry_t::m_nGlobalRank"]
-        [::std::mem::offset_of!(LeaderboardEntry_t, m_nGlobalRank) - 8usize];
-    ["Offset of field: LeaderboardEntry_t::m_nScore"]
-        [::std::mem::offset_of!(LeaderboardEntry_t, m_nScore) - 12usize];
-    ["Offset of field: LeaderboardEntry_t::m_cDetails"]
-        [::std::mem::offset_of!(LeaderboardEntry_t, m_cDetails) - 16usize];
-    ["Offset of field: LeaderboardEntry_t::m_hUGC"]
-        [::std::mem::offset_of!(LeaderboardEntry_t, m_hUGC) - 24usize];
-};
 #[repr(C)]
 pub struct ISteamUserStats__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1702,11 +1417,6 @@ pub struct ISteamUserStats__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamUserStats {
     pub vtable_: *const ISteamUserStats__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamUserStats"][::std::mem::size_of::<ISteamUserStats>() - 8usize];
-    ["Alignment of ISteamUserStats"][::std::mem::align_of::<ISteamUserStats>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamApps__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1714,11 +1424,6 @@ pub struct ISteamApps__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamApps {
     pub vtable_: *const ISteamApps__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamApps"][::std::mem::size_of::<ISteamApps>() - 8usize];
-    ["Alignment of ISteamApps"][::std::mem::align_of::<ISteamApps>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1740,27 +1445,6 @@ pub struct P2PSessionState_t {
     pub m_nRemoteIP: uint32,
     pub m_nRemotePort: uint16,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of P2PSessionState_t"][::std::mem::size_of::<P2PSessionState_t>() - 20usize];
-    ["Alignment of P2PSessionState_t"][::std::mem::align_of::<P2PSessionState_t>() - 4usize];
-    ["Offset of field: P2PSessionState_t::m_bConnectionActive"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_bConnectionActive) - 0usize];
-    ["Offset of field: P2PSessionState_t::m_bConnecting"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_bConnecting) - 1usize];
-    ["Offset of field: P2PSessionState_t::m_eP2PSessionError"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_eP2PSessionError) - 2usize];
-    ["Offset of field: P2PSessionState_t::m_bUsingRelay"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_bUsingRelay) - 3usize];
-    ["Offset of field: P2PSessionState_t::m_nBytesQueuedForSend"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_nBytesQueuedForSend) - 4usize];
-    ["Offset of field: P2PSessionState_t::m_nPacketsQueuedForSend"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_nPacketsQueuedForSend) - 8usize];
-    ["Offset of field: P2PSessionState_t::m_nRemoteIP"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_nRemoteIP) - 12usize];
-    ["Offset of field: P2PSessionState_t::m_nRemotePort"]
-        [::std::mem::offset_of!(P2PSessionState_t, m_nRemotePort) - 16usize];
-};
 pub type SNetSocket_t = uint32;
 pub type SNetListenSocket_t = uint32;
 #[repr(i32)]
@@ -1779,11 +1463,6 @@ pub struct ISteamNetworking__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamNetworking {
     pub vtable_: *const ISteamNetworking__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamNetworking"][::std::mem::size_of::<ISteamNetworking>() - 8usize];
-    ["Alignment of ISteamNetworking"][::std::mem::align_of::<ISteamNetworking>() - 8usize];
-};
 pub type ScreenshotHandle = uint32;
 #[repr(i32)]
 #[non_exhaustive]
@@ -1803,11 +1482,6 @@ pub struct ISteamScreenshots__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamScreenshots {
     pub vtable_: *const ISteamScreenshots__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamScreenshots"][::std::mem::size_of::<ISteamScreenshots>() - 8usize];
-    ["Alignment of ISteamScreenshots"][::std::mem::align_of::<ISteamScreenshots>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1824,11 +1498,6 @@ pub struct ISteamMusic__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamMusic {
     pub vtable_: *const ISteamMusic__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMusic"][::std::mem::size_of::<ISteamMusic>() - 8usize];
-    ["Alignment of ISteamMusic"][::std::mem::align_of::<ISteamMusic>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamMusicRemote__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -1836,11 +1505,6 @@ pub struct ISteamMusicRemote__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamMusicRemote {
     pub vtable_: *const ISteamMusicRemote__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamMusicRemote"][::std::mem::size_of::<ISteamMusicRemote>() - 8usize];
-    ["Alignment of ISteamMusicRemote"][::std::mem::align_of::<ISteamMusicRemote>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1863,11 +1527,6 @@ pub struct ISteamHTTP__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamHTTP {
     pub vtable_: *const ISteamHTTP__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamHTTP"][::std::mem::size_of::<ISteamHTTP>() - 8usize];
-    ["Alignment of ISteamHTTP"][::std::mem::align_of::<ISteamHTTP>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -2406,37 +2065,12 @@ pub struct InputAnalogActionData_t {
     pub y: f32,
     pub bActive: bool,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of InputAnalogActionData_t"][::std::mem::size_of::<InputAnalogActionData_t>() - 13usize];
-    ["Alignment of InputAnalogActionData_t"]
-        [::std::mem::align_of::<InputAnalogActionData_t>() - 1usize];
-    ["Offset of field: InputAnalogActionData_t::eMode"]
-        [::std::mem::offset_of!(InputAnalogActionData_t, eMode) - 0usize];
-    ["Offset of field: InputAnalogActionData_t::x"]
-        [::std::mem::offset_of!(InputAnalogActionData_t, x) - 4usize];
-    ["Offset of field: InputAnalogActionData_t::y"]
-        [::std::mem::offset_of!(InputAnalogActionData_t, y) - 8usize];
-    ["Offset of field: InputAnalogActionData_t::bActive"]
-        [::std::mem::offset_of!(InputAnalogActionData_t, bActive) - 12usize];
-};
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct InputDigitalActionData_t {
     pub bState: bool,
     pub bActive: bool,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of InputDigitalActionData_t"]
-        [::std::mem::size_of::<InputDigitalActionData_t>() - 2usize];
-    ["Alignment of InputDigitalActionData_t"]
-        [::std::mem::align_of::<InputDigitalActionData_t>() - 1usize];
-    ["Offset of field: InputDigitalActionData_t::bState"]
-        [::std::mem::offset_of!(InputDigitalActionData_t, bState) - 0usize];
-    ["Offset of field: InputDigitalActionData_t::bActive"]
-        [::std::mem::offset_of!(InputDigitalActionData_t, bActive) - 1usize];
-};
 #[repr(C, packed)]
 #[derive(Debug, Copy, Clone)]
 pub struct InputMotionData_t {
@@ -2451,31 +2085,6 @@ pub struct InputMotionData_t {
     pub rotVelY: f32,
     pub rotVelZ: f32,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of InputMotionData_t"][::std::mem::size_of::<InputMotionData_t>() - 40usize];
-    ["Alignment of InputMotionData_t"][::std::mem::align_of::<InputMotionData_t>() - 1usize];
-    ["Offset of field: InputMotionData_t::rotQuatX"]
-        [::std::mem::offset_of!(InputMotionData_t, rotQuatX) - 0usize];
-    ["Offset of field: InputMotionData_t::rotQuatY"]
-        [::std::mem::offset_of!(InputMotionData_t, rotQuatY) - 4usize];
-    ["Offset of field: InputMotionData_t::rotQuatZ"]
-        [::std::mem::offset_of!(InputMotionData_t, rotQuatZ) - 8usize];
-    ["Offset of field: InputMotionData_t::rotQuatW"]
-        [::std::mem::offset_of!(InputMotionData_t, rotQuatW) - 12usize];
-    ["Offset of field: InputMotionData_t::posAccelX"]
-        [::std::mem::offset_of!(InputMotionData_t, posAccelX) - 16usize];
-    ["Offset of field: InputMotionData_t::posAccelY"]
-        [::std::mem::offset_of!(InputMotionData_t, posAccelY) - 20usize];
-    ["Offset of field: InputMotionData_t::posAccelZ"]
-        [::std::mem::offset_of!(InputMotionData_t, posAccelZ) - 24usize];
-    ["Offset of field: InputMotionData_t::rotVelX"]
-        [::std::mem::offset_of!(InputMotionData_t, rotVelX) - 28usize];
-    ["Offset of field: InputMotionData_t::rotVelY"]
-        [::std::mem::offset_of!(InputMotionData_t, rotVelY) - 32usize];
-    ["Offset of field: InputMotionData_t::rotVelZ"]
-        [::std::mem::offset_of!(InputMotionData_t, rotVelZ) - 36usize];
-};
 #[repr(C, packed)]
 #[derive(Copy, Clone)]
 pub struct SteamInputActionEvent_t {
@@ -2489,63 +2098,18 @@ pub struct SteamInputActionEvent_t_AnalogAction_t {
     pub actionHandle: InputAnalogActionHandle_t,
     pub analogActionData: InputAnalogActionData_t,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamInputActionEvent_t_AnalogAction_t"]
-        [::std::mem::size_of::<SteamInputActionEvent_t_AnalogAction_t>() - 21usize];
-    ["Alignment of SteamInputActionEvent_t_AnalogAction_t"]
-        [::std::mem::align_of::<SteamInputActionEvent_t_AnalogAction_t>() - 1usize];
-    ["Offset of field: SteamInputActionEvent_t_AnalogAction_t::actionHandle"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t_AnalogAction_t, actionHandle) - 0usize];
-    ["Offset of field: SteamInputActionEvent_t_AnalogAction_t::analogActionData"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t_AnalogAction_t, analogActionData) - 8usize];
-};
 #[repr(C, packed)]
 #[derive(Debug, Copy, Clone)]
 pub struct SteamInputActionEvent_t_DigitalAction_t {
     pub actionHandle: InputDigitalActionHandle_t,
     pub digitalActionData: InputDigitalActionData_t,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamInputActionEvent_t_DigitalAction_t"]
-        [::std::mem::size_of::<SteamInputActionEvent_t_DigitalAction_t>() - 10usize];
-    ["Alignment of SteamInputActionEvent_t_DigitalAction_t"]
-        [::std::mem::align_of::<SteamInputActionEvent_t_DigitalAction_t>() - 1usize];
-    ["Offset of field: SteamInputActionEvent_t_DigitalAction_t::actionHandle"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t_DigitalAction_t, actionHandle) - 0usize];
-    ["Offset of field: SteamInputActionEvent_t_DigitalAction_t::digitalActionData"][::std::mem::offset_of!(
-        SteamInputActionEvent_t_DigitalAction_t,
-        digitalActionData
-    ) - 8usize];
-};
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union SteamInputActionEvent_t__bindgen_ty_1 {
     pub analogAction: SteamInputActionEvent_t_AnalogAction_t,
     pub digitalAction: SteamInputActionEvent_t_DigitalAction_t,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamInputActionEvent_t__bindgen_ty_1"]
-        [::std::mem::size_of::<SteamInputActionEvent_t__bindgen_ty_1>() - 21usize];
-    ["Alignment of SteamInputActionEvent_t__bindgen_ty_1"]
-        [::std::mem::align_of::<SteamInputActionEvent_t__bindgen_ty_1>() - 1usize];
-    ["Offset of field: SteamInputActionEvent_t__bindgen_ty_1::analogAction"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t__bindgen_ty_1, analogAction) - 0usize];
-    ["Offset of field: SteamInputActionEvent_t__bindgen_ty_1::digitalAction"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t__bindgen_ty_1, digitalAction) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamInputActionEvent_t"][::std::mem::size_of::<SteamInputActionEvent_t>() - 33usize];
-    ["Alignment of SteamInputActionEvent_t"]
-        [::std::mem::align_of::<SteamInputActionEvent_t>() - 1usize];
-    ["Offset of field: SteamInputActionEvent_t::controllerHandle"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t, controllerHandle) - 0usize];
-    ["Offset of field: SteamInputActionEvent_t::eEventType"]
-        [::std::mem::offset_of!(SteamInputActionEvent_t, eEventType) - 8usize];
-};
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct ScePadTriggerEffectParam {
@@ -2560,11 +2124,6 @@ pub struct ISteamInput__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamInput {
     pub vtable_: *const ISteamInput__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamInput"][::std::mem::size_of::<ISteamInput>() - 8usize];
-    ["Alignment of ISteamInput"][::std::mem::align_of::<ISteamInput>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -2973,11 +2532,6 @@ pub struct ISteamController__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamController {
     pub vtable_: *const ISteamController__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamController"][::std::mem::size_of::<ISteamController>() - 8usize];
-    ["Alignment of ISteamController"][::std::mem::align_of::<ISteamController>() - 8usize];
-};
 pub type UGCQueryHandle_t = uint64;
 pub type UGCUpdateHandle_t = uint64;
 #[repr(i32)]
@@ -3132,65 +2686,6 @@ pub struct SteamUGCDetails_t {
     pub m_unNumChildren: uint32,
     pub m_ulTotalFilesSize: uint64,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamUGCDetails_t"][::std::mem::size_of::<SteamUGCDetails_t>() - 9784usize];
-    ["Alignment of SteamUGCDetails_t"][::std::mem::align_of::<SteamUGCDetails_t>() - 8usize];
-    ["Offset of field: SteamUGCDetails_t::m_nPublishedFileId"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_nPublishedFileId) - 0usize];
-    ["Offset of field: SteamUGCDetails_t::m_eResult"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_eResult) - 8usize];
-    ["Offset of field: SteamUGCDetails_t::m_eFileType"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_eFileType) - 12usize];
-    ["Offset of field: SteamUGCDetails_t::m_nCreatorAppID"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_nCreatorAppID) - 16usize];
-    ["Offset of field: SteamUGCDetails_t::m_nConsumerAppID"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_nConsumerAppID) - 20usize];
-    ["Offset of field: SteamUGCDetails_t::m_rgchTitle"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rgchTitle) - 24usize];
-    ["Offset of field: SteamUGCDetails_t::m_rgchDescription"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rgchDescription) - 153usize];
-    ["Offset of field: SteamUGCDetails_t::m_ulSteamIDOwner"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_ulSteamIDOwner) - 8160usize];
-    ["Offset of field: SteamUGCDetails_t::m_rtimeCreated"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rtimeCreated) - 8168usize];
-    ["Offset of field: SteamUGCDetails_t::m_rtimeUpdated"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rtimeUpdated) - 8172usize];
-    ["Offset of field: SteamUGCDetails_t::m_rtimeAddedToUserList"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rtimeAddedToUserList) - 8176usize];
-    ["Offset of field: SteamUGCDetails_t::m_eVisibility"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_eVisibility) - 8180usize];
-    ["Offset of field: SteamUGCDetails_t::m_bBanned"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_bBanned) - 8184usize];
-    ["Offset of field: SteamUGCDetails_t::m_bAcceptedForUse"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_bAcceptedForUse) - 8185usize];
-    ["Offset of field: SteamUGCDetails_t::m_bTagsTruncated"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_bTagsTruncated) - 8186usize];
-    ["Offset of field: SteamUGCDetails_t::m_rgchTags"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rgchTags) - 8187usize];
-    ["Offset of field: SteamUGCDetails_t::m_hFile"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_hFile) - 9216usize];
-    ["Offset of field: SteamUGCDetails_t::m_hPreviewFile"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_hPreviewFile) - 9224usize];
-    ["Offset of field: SteamUGCDetails_t::m_pchFileName"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_pchFileName) - 9232usize];
-    ["Offset of field: SteamUGCDetails_t::m_nFileSize"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_nFileSize) - 9492usize];
-    ["Offset of field: SteamUGCDetails_t::m_nPreviewFileSize"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_nPreviewFileSize) - 9496usize];
-    ["Offset of field: SteamUGCDetails_t::m_rgchURL"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_rgchURL) - 9500usize];
-    ["Offset of field: SteamUGCDetails_t::m_unVotesUp"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_unVotesUp) - 9756usize];
-    ["Offset of field: SteamUGCDetails_t::m_unVotesDown"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_unVotesDown) - 9760usize];
-    ["Offset of field: SteamUGCDetails_t::m_flScore"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_flScore) - 9764usize];
-    ["Offset of field: SteamUGCDetails_t::m_unNumChildren"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_unNumChildren) - 9768usize];
-    ["Offset of field: SteamUGCDetails_t::m_ulTotalFilesSize"]
-        [::std::mem::offset_of!(SteamUGCDetails_t, m_ulTotalFilesSize) - 9776usize];
-};
 #[repr(C)]
 pub struct ISteamUGC__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -3198,11 +2693,6 @@ pub struct ISteamUGC__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamUGC {
     pub vtable_: *const ISteamUGC__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamUGC"][::std::mem::size_of::<ISteamUGC>() - 8usize];
-    ["Alignment of ISteamUGC"][::std::mem::align_of::<ISteamUGC>() - 8usize];
-};
 pub type HHTMLBrowser = uint32;
 #[repr(C)]
 pub struct ISteamHTMLSurface__bindgen_vtable(::std::os::raw::c_void);
@@ -3275,11 +2765,6 @@ pub enum ISteamHTMLSurface_EHTMLKeyModifiers {
     k_eHTMLKeyModifier_CtrlDown = 2,
     k_eHTMLKeyModifier_ShiftDown = 4,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamHTMLSurface"][::std::mem::size_of::<ISteamHTMLSurface>() - 8usize];
-    ["Alignment of ISteamHTMLSurface"][::std::mem::align_of::<ISteamHTMLSurface>() - 8usize];
-};
 pub type SteamItemInstanceID_t = uint64;
 pub type SteamItemDef_t = int32;
 #[repr(C)]
@@ -3290,19 +2775,6 @@ pub struct SteamItemDetails_t {
     pub m_unQuantity: uint16,
     pub m_unFlags: uint16,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamItemDetails_t"][::std::mem::size_of::<SteamItemDetails_t>() - 16usize];
-    ["Alignment of SteamItemDetails_t"][::std::mem::align_of::<SteamItemDetails_t>() - 8usize];
-    ["Offset of field: SteamItemDetails_t::m_itemId"]
-        [::std::mem::offset_of!(SteamItemDetails_t, m_itemId) - 0usize];
-    ["Offset of field: SteamItemDetails_t::m_iDefinition"]
-        [::std::mem::offset_of!(SteamItemDetails_t, m_iDefinition) - 8usize];
-    ["Offset of field: SteamItemDetails_t::m_unQuantity"]
-        [::std::mem::offset_of!(SteamItemDetails_t, m_unQuantity) - 12usize];
-    ["Offset of field: SteamItemDetails_t::m_unFlags"]
-        [::std::mem::offset_of!(SteamItemDetails_t, m_unFlags) - 14usize];
-};
 pub type SteamInventoryResult_t = int32;
 pub type SteamInventoryUpdateHandle_t = uint64;
 #[repr(C)]
@@ -3312,11 +2784,6 @@ pub struct ISteamInventory__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamInventory {
     pub vtable_: *const ISteamInventory__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamInventory"][::std::mem::size_of::<ISteamInventory>() - 8usize];
-    ["Alignment of ISteamInventory"][::std::mem::align_of::<ISteamInventory>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -3345,11 +2812,6 @@ pub struct ISteamTimeline__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamTimeline {
     pub vtable_: *const ISteamTimeline__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamTimeline"][::std::mem::size_of::<ISteamTimeline>() - 8usize];
-    ["Alignment of ISteamTimeline"][::std::mem::align_of::<ISteamTimeline>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamVideo__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -3357,11 +2819,6 @@ pub struct ISteamVideo__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamVideo {
     pub vtable_: *const ISteamVideo__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamVideo"][::std::mem::size_of::<ISteamVideo>() - 8usize];
-    ["Alignment of ISteamVideo"][::std::mem::align_of::<ISteamVideo>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -3391,12 +2848,6 @@ pub struct ISteamParentalSettings__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamParentalSettings {
     pub vtable_: *const ISteamParentalSettings__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamParentalSettings"][::std::mem::size_of::<ISteamParentalSettings>() - 8usize];
-    ["Alignment of ISteamParentalSettings"]
-        [::std::mem::align_of::<ISteamParentalSettings>() - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -3416,11 +2867,6 @@ pub struct ISteamRemotePlay__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamRemotePlay {
     pub vtable_: *const ISteamRemotePlay__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamRemotePlay"][::std::mem::size_of::<ISteamRemotePlay>() - 8usize];
-    ["Alignment of ISteamRemotePlay"][::std::mem::align_of::<ISteamRemotePlay>() - 8usize];
-};
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct SteamDatagramRelayAuthTicket {
@@ -3532,46 +2978,12 @@ pub struct SteamNetworkingIPAddr_IPv4MappedAddress {
     pub m_ffff: uint16,
     pub m_ip: [uint8; 4usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingIPAddr_IPv4MappedAddress"]
-        [::std::mem::size_of::<SteamNetworkingIPAddr_IPv4MappedAddress>() - 16usize];
-    ["Alignment of SteamNetworkingIPAddr_IPv4MappedAddress"]
-        [::std::mem::align_of::<SteamNetworkingIPAddr_IPv4MappedAddress>() - 1usize];
-    ["Offset of field: SteamNetworkingIPAddr_IPv4MappedAddress::m_8zeros"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr_IPv4MappedAddress, m_8zeros) - 0usize];
-    ["Offset of field: SteamNetworkingIPAddr_IPv4MappedAddress::m_0000"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr_IPv4MappedAddress, m_0000) - 8usize];
-    ["Offset of field: SteamNetworkingIPAddr_IPv4MappedAddress::m_ffff"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr_IPv4MappedAddress, m_ffff) - 10usize];
-    ["Offset of field: SteamNetworkingIPAddr_IPv4MappedAddress::m_ip"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr_IPv4MappedAddress, m_ip) - 12usize];
-};
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union SteamNetworkingIPAddr__bindgen_ty_2 {
     pub m_ipv6: [uint8; 16usize],
     pub m_ipv4: SteamNetworkingIPAddr_IPv4MappedAddress,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingIPAddr__bindgen_ty_2"]
-        [::std::mem::size_of::<SteamNetworkingIPAddr__bindgen_ty_2>() - 16usize];
-    ["Alignment of SteamNetworkingIPAddr__bindgen_ty_2"]
-        [::std::mem::align_of::<SteamNetworkingIPAddr__bindgen_ty_2>() - 1usize];
-    ["Offset of field: SteamNetworkingIPAddr__bindgen_ty_2::m_ipv6"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr__bindgen_ty_2, m_ipv6) - 0usize];
-    ["Offset of field: SteamNetworkingIPAddr__bindgen_ty_2::m_ipv4"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr__bindgen_ty_2, m_ipv4) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingIPAddr"][::std::mem::size_of::<SteamNetworkingIPAddr>() - 18usize];
-    ["Alignment of SteamNetworkingIPAddr"]
-        [::std::mem::align_of::<SteamNetworkingIPAddr>() - 1usize];
-    ["Offset of field: SteamNetworkingIPAddr::m_port"]
-        [::std::mem::offset_of!(SteamNetworkingIPAddr, m_port) - 16usize];
-};
 #[doc = " An abstract way to represent the identity of a network host.  All identities can\n be represented as simple string.  Furthermore, this string representation is actually\n used on the wire in several places, even though it is less efficient, in order to\n facilitate forward compatibility.  (Old client code can handle an identity type that\n it doesn't understand.)"]
 #[repr(C, packed)]
 #[derive(Copy, Clone)]
@@ -3609,44 +3021,6 @@ pub union SteamNetworkingIdentity__bindgen_ty_2 {
     pub m_ip: SteamNetworkingIPAddr,
     pub m_reserved: [uint32; 32usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingIdentity__bindgen_ty_2"]
-        [::std::mem::size_of::<SteamNetworkingIdentity__bindgen_ty_2>() - 128usize];
-    ["Alignment of SteamNetworkingIdentity__bindgen_ty_2"]
-        [::std::mem::align_of::<SteamNetworkingIdentity__bindgen_ty_2>() - 1usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_steamID64"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity__bindgen_ty_2, m_steamID64) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_PSNID"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity__bindgen_ty_2, m_PSNID) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_szGenericString"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity__bindgen_ty_2, m_szGenericString) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_szXboxPairwiseID"][::std::mem::offset_of!(
-        SteamNetworkingIdentity__bindgen_ty_2,
-        m_szXboxPairwiseID
-    ) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_genericBytes"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity__bindgen_ty_2, m_genericBytes) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_szUnknownRawString"][::std::mem::offset_of!(
-        SteamNetworkingIdentity__bindgen_ty_2,
-        m_szUnknownRawString
-    ) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_ip"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity__bindgen_ty_2, m_ip) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity__bindgen_ty_2::m_reserved"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity__bindgen_ty_2, m_reserved) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingIdentity"]
-        [::std::mem::size_of::<SteamNetworkingIdentity>() - 136usize];
-    ["Alignment of SteamNetworkingIdentity"]
-        [::std::mem::align_of::<SteamNetworkingIdentity>() - 1usize];
-    ["Offset of field: SteamNetworkingIdentity::m_eType"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity, m_eType) - 0usize];
-    ["Offset of field: SteamNetworkingIdentity::m_cbSize"]
-        [::std::mem::offset_of!(SteamNetworkingIdentity, m_cbSize) - 4usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[doc = " High level connection status"]
@@ -3703,39 +3077,6 @@ pub struct SteamNetConnectionInfo_t {
     #[doc = " Internal stuff, room to change API easily"]
     pub reserved: [uint32; 63usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetConnectionInfo_t"]
-        [::std::mem::size_of::<SteamNetConnectionInfo_t>() - 696usize];
-    ["Alignment of SteamNetConnectionInfo_t"]
-        [::std::mem::align_of::<SteamNetConnectionInfo_t>() - 8usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_identityRemote"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_identityRemote) - 0usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_nUserData"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_nUserData) - 136usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_hListenSocket"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_hListenSocket) - 144usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_addrRemote"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_addrRemote) - 148usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m__pad1"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m__pad1) - 166usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_idPOPRemote"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_idPOPRemote) - 168usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_idPOPRelay"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_idPOPRelay) - 172usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_eState"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_eState) - 176usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_eEndReason"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_eEndReason) - 180usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_szEndDebug"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_szEndDebug) - 184usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_szConnectionDescription"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_szConnectionDescription) - 312usize];
-    ["Offset of field: SteamNetConnectionInfo_t::m_nFlags"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, m_nFlags) - 440usize];
-    ["Offset of field: SteamNetConnectionInfo_t::reserved"]
-        [::std::mem::offset_of!(SteamNetConnectionInfo_t, reserved) - 444usize];
-};
 #[doc = " Quick connection state, pared down to something you could call\n more frequently without it being too big of a perf hit."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -3764,54 +3105,6 @@ pub struct SteamNetConnectionRealTimeStatus_t {
     pub m_usecQueueTime: SteamNetworkingMicroseconds,
     pub reserved: [uint32; 16usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetConnectionRealTimeStatus_t"]
-        [::std::mem::size_of::<SteamNetConnectionRealTimeStatus_t>() - 120usize];
-    ["Alignment of SteamNetConnectionRealTimeStatus_t"]
-        [::std::mem::align_of::<SteamNetConnectionRealTimeStatus_t>() - 8usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_eState"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_eState) - 0usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_nPing"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_nPing) - 4usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_flConnectionQualityLocal"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeStatus_t,
-        m_flConnectionQualityLocal
-    ) - 8usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_flConnectionQualityRemote"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeStatus_t,
-        m_flConnectionQualityRemote
-    )
-        - 12usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_flOutPacketsPerSec"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeStatus_t,
-        m_flOutPacketsPerSec
-    ) - 16usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_flOutBytesPerSec"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_flOutBytesPerSec) - 20usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_flInPacketsPerSec"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_flInPacketsPerSec) - 24usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_flInBytesPerSec"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_flInBytesPerSec) - 28usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_nSendRateBytesPerSecond"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeStatus_t,
-        m_nSendRateBytesPerSecond
-    ) - 32usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_cbPendingUnreliable"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeStatus_t,
-        m_cbPendingUnreliable
-    ) - 36usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_cbPendingReliable"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_cbPendingReliable) - 40usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_cbSentUnackedReliable"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeStatus_t,
-        m_cbSentUnackedReliable
-    ) - 44usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::m_usecQueueTime"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, m_usecQueueTime) - 48usize];
-    ["Offset of field: SteamNetConnectionRealTimeStatus_t::reserved"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeStatus_t, reserved) - 56usize];
-};
 #[doc = " Quick status of a particular lane"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -3824,32 +3117,6 @@ pub struct SteamNetConnectionRealTimeLaneStatus_t {
     pub m_usecQueueTime: SteamNetworkingMicroseconds,
     pub reserved: [uint32; 10usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetConnectionRealTimeLaneStatus_t"]
-        [::std::mem::size_of::<SteamNetConnectionRealTimeLaneStatus_t>() - 64usize];
-    ["Alignment of SteamNetConnectionRealTimeLaneStatus_t"]
-        [::std::mem::align_of::<SteamNetConnectionRealTimeLaneStatus_t>() - 8usize];
-    ["Offset of field: SteamNetConnectionRealTimeLaneStatus_t::m_cbPendingUnreliable"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeLaneStatus_t,
-        m_cbPendingUnreliable
-    ) - 0usize];
-    ["Offset of field: SteamNetConnectionRealTimeLaneStatus_t::m_cbPendingReliable"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeLaneStatus_t,
-        m_cbPendingReliable
-    ) - 4usize];
-    ["Offset of field: SteamNetConnectionRealTimeLaneStatus_t::m_cbSentUnackedReliable"][::std::mem::offset_of!(
-        SteamNetConnectionRealTimeLaneStatus_t,
-        m_cbSentUnackedReliable
-    )
-        - 8usize];
-    ["Offset of field: SteamNetConnectionRealTimeLaneStatus_t::_reservePad1"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeLaneStatus_t, _reservePad1) - 12usize];
-    ["Offset of field: SteamNetConnectionRealTimeLaneStatus_t::m_usecQueueTime"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeLaneStatus_t, m_usecQueueTime) - 16usize];
-    ["Offset of field: SteamNetConnectionRealTimeLaneStatus_t::reserved"]
-        [::std::mem::offset_of!(SteamNetConnectionRealTimeLaneStatus_t, reserved) - 24usize];
-};
 #[doc = " A message that has been received."]
 #[repr(C)]
 pub struct SteamNetworkingMessage_t {
@@ -3883,56 +3150,12 @@ pub struct SteamNetworkingMessage_t {
     pub m_idxLane: uint16,
     pub _pad1__: uint16,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingMessage_t"]
-        [::std::mem::size_of::<SteamNetworkingMessage_t>() - 216usize];
-    ["Alignment of SteamNetworkingMessage_t"]
-        [::std::mem::align_of::<SteamNetworkingMessage_t>() - 8usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_pData"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_pData) - 0usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_cbSize"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_cbSize) - 8usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_conn"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_conn) - 12usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_identityPeer"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_identityPeer) - 16usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_nConnUserData"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_nConnUserData) - 152usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_usecTimeReceived"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_usecTimeReceived) - 160usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_nMessageNumber"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_nMessageNumber) - 168usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_pfnFreeData"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_pfnFreeData) - 176usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_pfnRelease"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_pfnRelease) - 184usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_nChannel"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_nChannel) - 192usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_nFlags"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_nFlags) - 196usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_nUserData"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_nUserData) - 200usize];
-    ["Offset of field: SteamNetworkingMessage_t::m_idxLane"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, m_idxLane) - 208usize];
-    ["Offset of field: SteamNetworkingMessage_t::_pad1__"]
-        [::std::mem::offset_of!(SteamNetworkingMessage_t, _pad1__) - 210usize];
-};
 #[doc = " Object that describes a \"location\" on the Internet with sufficient\n detail that we can reasonably estimate an upper bound on the ping between\n the two hosts, even if a direct route between the hosts is not possible,\n and the connection must be routed through the Steam Datagram Relay network.\n This does not contain any information that identifies the host.  Indeed,\n if two hosts are in the same building or otherwise have nearly identical\n networking characteristics, then it's valid to use the same location\n object for both of them.\n\n NOTE: This object should only be used in the same process!  Do not serialize it,\n send it over the wire, or persist it in a file or database!  If you need\n to do that, convert it to a string representation using the methods in\n ISteamNetworkingUtils()."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct SteamNetworkPingLocation_t {
     pub m_data: [uint8; 512usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkPingLocation_t"]
-        [::std::mem::size_of::<SteamNetworkPingLocation_t>() - 512usize];
-    ["Alignment of SteamNetworkPingLocation_t"]
-        [::std::mem::align_of::<SteamNetworkPingLocation_t>() - 1usize];
-    ["Offset of field: SteamNetworkPingLocation_t::m_data"]
-        [::std::mem::offset_of!(SteamNetworkPingLocation_t, m_data) - 0usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[doc = " Configuration values can be applied to different types of objects."]
@@ -4134,36 +3357,6 @@ pub union SteamNetworkingConfigValue_t__bindgen_ty_1 {
     pub m_string: *const ::std::os::raw::c_char,
     pub m_ptr: *mut ::std::os::raw::c_void,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingConfigValue_t__bindgen_ty_1"]
-        [::std::mem::size_of::<SteamNetworkingConfigValue_t__bindgen_ty_1>() - 8usize];
-    ["Alignment of SteamNetworkingConfigValue_t__bindgen_ty_1"]
-        [::std::mem::align_of::<SteamNetworkingConfigValue_t__bindgen_ty_1>() - 8usize];
-    ["Offset of field: SteamNetworkingConfigValue_t__bindgen_ty_1::m_int32"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t__bindgen_ty_1, m_int32) - 0usize];
-    ["Offset of field: SteamNetworkingConfigValue_t__bindgen_ty_1::m_int64"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t__bindgen_ty_1, m_int64) - 0usize];
-    ["Offset of field: SteamNetworkingConfigValue_t__bindgen_ty_1::m_float"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t__bindgen_ty_1, m_float) - 0usize];
-    ["Offset of field: SteamNetworkingConfigValue_t__bindgen_ty_1::m_string"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t__bindgen_ty_1, m_string) - 0usize];
-    ["Offset of field: SteamNetworkingConfigValue_t__bindgen_ty_1::m_ptr"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t__bindgen_ty_1, m_ptr) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingConfigValue_t"]
-        [::std::mem::size_of::<SteamNetworkingConfigValue_t>() - 16usize];
-    ["Alignment of SteamNetworkingConfigValue_t"]
-        [::std::mem::align_of::<SteamNetworkingConfigValue_t>() - 8usize];
-    ["Offset of field: SteamNetworkingConfigValue_t::m_eValue"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t, m_eValue) - 0usize];
-    ["Offset of field: SteamNetworkingConfigValue_t::m_eDataType"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t, m_eDataType) - 4usize];
-    ["Offset of field: SteamNetworkingConfigValue_t::m_val"]
-        [::std::mem::offset_of!(SteamNetworkingConfigValue_t, m_val) - 8usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[doc = " Return value of ISteamNetworkintgUtils::GetConfigValue"]
@@ -4207,13 +3400,6 @@ pub struct ISteamNetworkingMessages__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamNetworkingMessages {
     pub vtable_: *const ISteamNetworkingMessages__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamNetworkingMessages"]
-        [::std::mem::size_of::<ISteamNetworkingMessages>() - 8usize];
-    ["Alignment of ISteamNetworkingMessages"]
-        [::std::mem::align_of::<ISteamNetworkingMessages>() - 8usize];
-};
 #[doc = " Posted when a remote host is sending us a message, and we do not already have a session with them"]
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -4229,17 +3415,6 @@ pub const SteamNetworkingMessagesSessionRequest_t_k_iCallback:
 pub enum SteamNetworkingMessagesSessionRequest_t__bindgen_ty_1 {
     k_iCallback = 1251,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingMessagesSessionRequest_t"]
-        [::std::mem::size_of::<SteamNetworkingMessagesSessionRequest_t>() - 136usize];
-    ["Alignment of SteamNetworkingMessagesSessionRequest_t"]
-        [::std::mem::align_of::<SteamNetworkingMessagesSessionRequest_t>() - 1usize];
-    ["Offset of field: SteamNetworkingMessagesSessionRequest_t::m_identityRemote"][::std::mem::offset_of!(
-        SteamNetworkingMessagesSessionRequest_t,
-        m_identityRemote
-    ) - 0usize];
-};
 #[doc = " Posted when we fail to establish a connection, or we detect that communications\n have been disrupted it an unusual way.  There is no notification when a peer proactively\n closes the session.  (\"Closed by peer\" is not a concept of UDP-style communications, and\n SteamNetworkingMessages is primarily intended to make porting UDP code easy.)\n\n Remember: callbacks are asynchronous.   See notes on SendMessageToUser,\n and k_nSteamNetworkingSend_AutoRestartBrokenSession in particular.\n\n Also, if a session times out due to inactivity, no callbacks will be posted.  The only\n way to detect that this is happening is that querying the session state may return\n none, connecting, and findingroute again."]
 #[repr(C, packed)]
 #[derive(Copy, Clone)]
@@ -4256,15 +3431,6 @@ pub const SteamNetworkingMessagesSessionFailed_t_k_iCallback:
 pub enum SteamNetworkingMessagesSessionFailed_t__bindgen_ty_1 {
     k_iCallback = 1252,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetworkingMessagesSessionFailed_t"]
-        [::std::mem::size_of::<SteamNetworkingMessagesSessionFailed_t>() - 696usize];
-    ["Alignment of SteamNetworkingMessagesSessionFailed_t"]
-        [::std::mem::align_of::<SteamNetworkingMessagesSessionFailed_t>() - 1usize];
-    ["Offset of field: SteamNetworkingMessagesSessionFailed_t::m_info"]
-        [::std::mem::offset_of!(SteamNetworkingMessagesSessionFailed_t, m_info) - 0usize];
-};
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct ISteamNetworkingConnectionSignaling {
@@ -4288,12 +3454,6 @@ pub struct ISteamNetworkingSockets__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamNetworkingSockets {
     pub vtable_: *const ISteamNetworkingSockets__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamNetworkingSockets"][::std::mem::size_of::<ISteamNetworkingSockets>() - 8usize];
-    ["Alignment of ISteamNetworkingSockets"]
-        [::std::mem::align_of::<ISteamNetworkingSockets>() - 8usize];
-};
 unsafe extern "C" {
     #[link_name = "\u{1}??1ISteamNetworkingSockets@@IEAA@XZ"]
     pub fn ISteamNetworkingSockets_ISteamNetworkingSockets_destructor(
@@ -4326,19 +3486,6 @@ pub const SteamNetConnectionStatusChangedCallback_t_k_iCallback:
 pub enum SteamNetConnectionStatusChangedCallback_t__bindgen_ty_1 {
     k_iCallback = 1221,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetConnectionStatusChangedCallback_t"]
-        [::std::mem::size_of::<SteamNetConnectionStatusChangedCallback_t>() - 712usize];
-    ["Alignment of SteamNetConnectionStatusChangedCallback_t"]
-        [::std::mem::align_of::<SteamNetConnectionStatusChangedCallback_t>() - 8usize];
-    ["Offset of field: SteamNetConnectionStatusChangedCallback_t::m_hConn"]
-        [::std::mem::offset_of!(SteamNetConnectionStatusChangedCallback_t, m_hConn) - 0usize];
-    ["Offset of field: SteamNetConnectionStatusChangedCallback_t::m_info"]
-        [::std::mem::offset_of!(SteamNetConnectionStatusChangedCallback_t, m_info) - 8usize];
-    ["Offset of field: SteamNetConnectionStatusChangedCallback_t::m_eOldState"]
-        [::std::mem::offset_of!(SteamNetConnectionStatusChangedCallback_t, m_eOldState) - 704usize];
-};
 #[doc = " A struct used to describe our readiness to participate in authenticated,\n encrypted communication.  In order to do this we need:\n\n - The list of trusted CA certificates that might be relevant for this\n   app.\n - A valid certificate issued by a CA.\n\n This callback is posted whenever the state of our readiness changes."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -4356,17 +3503,6 @@ pub const SteamNetAuthenticationStatus_t_k_iCallback: SteamNetAuthenticationStat
 pub enum SteamNetAuthenticationStatus_t__bindgen_ty_1 {
     k_iCallback = 1222,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamNetAuthenticationStatus_t"]
-        [::std::mem::size_of::<SteamNetAuthenticationStatus_t>() - 260usize];
-    ["Alignment of SteamNetAuthenticationStatus_t"]
-        [::std::mem::align_of::<SteamNetAuthenticationStatus_t>() - 4usize];
-    ["Offset of field: SteamNetAuthenticationStatus_t::m_eAvail"]
-        [::std::mem::offset_of!(SteamNetAuthenticationStatus_t, m_eAvail) - 0usize];
-    ["Offset of field: SteamNetAuthenticationStatus_t::m_debugMsg"]
-        [::std::mem::offset_of!(SteamNetAuthenticationStatus_t, m_debugMsg) - 4usize];
-};
 #[repr(C)]
 pub struct ISteamNetworkingUtils__bindgen_vtable(::std::os::raw::c_void);
 #[doc = " Misc networking utilities for checking the local networking environment\n and estimating pings."]
@@ -4375,12 +3511,6 @@ pub struct ISteamNetworkingUtils__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamNetworkingUtils {
     pub vtable_: *const ISteamNetworkingUtils__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamNetworkingUtils"][::std::mem::size_of::<ISteamNetworkingUtils>() - 8usize];
-    ["Alignment of ISteamNetworkingUtils"]
-        [::std::mem::align_of::<ISteamNetworkingUtils>() - 8usize];
-};
 unsafe extern "C" {
     #[link_name = "\u{1}??1ISteamNetworkingUtils@@IEAA@XZ"]
     pub fn ISteamNetworkingUtils_ISteamNetworkingUtils_destructor(this: *mut ISteamNetworkingUtils);
@@ -4414,23 +3544,6 @@ pub const SteamRelayNetworkStatus_t_k_iCallback: SteamRelayNetworkStatus_t__bind
 pub enum SteamRelayNetworkStatus_t__bindgen_ty_1 {
     k_iCallback = 1281,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of SteamRelayNetworkStatus_t"]
-        [::std::mem::size_of::<SteamRelayNetworkStatus_t>() - 272usize];
-    ["Alignment of SteamRelayNetworkStatus_t"]
-        [::std::mem::align_of::<SteamRelayNetworkStatus_t>() - 4usize];
-    ["Offset of field: SteamRelayNetworkStatus_t::m_eAvail"]
-        [::std::mem::offset_of!(SteamRelayNetworkStatus_t, m_eAvail) - 0usize];
-    ["Offset of field: SteamRelayNetworkStatus_t::m_bPingMeasurementInProgress"]
-        [::std::mem::offset_of!(SteamRelayNetworkStatus_t, m_bPingMeasurementInProgress) - 4usize];
-    ["Offset of field: SteamRelayNetworkStatus_t::m_eAvailNetworkConfig"]
-        [::std::mem::offset_of!(SteamRelayNetworkStatus_t, m_eAvailNetworkConfig) - 8usize];
-    ["Offset of field: SteamRelayNetworkStatus_t::m_eAvailAnyRelay"]
-        [::std::mem::offset_of!(SteamRelayNetworkStatus_t, m_eAvailAnyRelay) - 12usize];
-    ["Offset of field: SteamRelayNetworkStatus_t::m_debugMsg"]
-        [::std::mem::offset_of!(SteamRelayNetworkStatus_t, m_debugMsg) - 16usize];
-};
 #[repr(i32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -4447,11 +3560,6 @@ pub struct ISteamGameServer__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamGameServer {
     pub vtable_: *const ISteamGameServer__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamGameServer"][::std::mem::size_of::<ISteamGameServer>() - 8usize];
-    ["Alignment of ISteamGameServer"][::std::mem::align_of::<ISteamGameServer>() - 8usize];
-};
 #[repr(C)]
 pub struct ISteamGameServerStats__bindgen_vtable(::std::os::raw::c_void);
 #[repr(C)]
@@ -4459,12 +3567,6 @@ pub struct ISteamGameServerStats__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamGameServerStats {
     pub vtable_: *const ISteamGameServerStats__bindgen_vtable,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of ISteamGameServerStats"][::std::mem::size_of::<ISteamGameServerStats>() - 8usize];
-    ["Alignment of ISteamGameServerStats"]
-        [::std::mem::align_of::<ISteamGameServerStats>() - 8usize];
-};
 pub type uint64_steamid = uint64;
 pub type uint64_gameid = uint64;
 pub struct steam_api {

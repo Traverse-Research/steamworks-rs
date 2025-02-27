@@ -6,10 +6,8 @@ extern crate thiserror;
 // extern crate lazy_static;
 
 // use screenshots::Screenshots;
-#[cfg(feature = "raw-bindings")]
+
 pub use steamworks_sys as sys;
-#[cfg(not(feature = "raw-bindings"))]
-use steamworks_sys as sys;
 use sys::{ESteamAPIInitResult, SteamErrMsg};
 
 use core::ffi::c_void;
