@@ -623,15 +623,15 @@ const _: () = {
     ["Alignment of CSteamID"][::std::mem::align_of::<CSteamID>() - 1usize];
     ["Offset of field: CSteamID::m_steamid"][::std::mem::offset_of!(CSteamID, m_steamid) - 0usize];
 };
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?Render@CSteamID@@QEBAPEBDXZ"]
     pub fn CSteamID_Render(this: *const CSteamID) -> *const ::std::os::raw::c_char;
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?Render@CSteamID@@SAPEBD_K@Z"]
     pub fn CSteamID_Render1(ulSteamID: uint64) -> *const ::std::os::raw::c_char;
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?SetFromString@CSteamID@@QEAAXPEBDW4EUniverse@@@Z"]
     pub fn CSteamID_SetFromString(
         this: *mut CSteamID,
@@ -639,7 +639,7 @@ extern "C" {
         eDefaultUniverse: EUniverse,
     );
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?SetFromStringStrict@CSteamID@@QEAA_NPEBDW4EUniverse@@@Z"]
     pub fn CSteamID_SetFromStringStrict(
         this: *mut CSteamID,
@@ -647,11 +647,11 @@ extern "C" {
         eDefaultUniverse: EUniverse,
     ) -> bool;
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?BValidExternalSteamID@CSteamID@@QEBA_NXZ"]
     pub fn CSteamID_BValidExternalSteamID(this: *const CSteamID) -> bool;
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}??0CSteamID@@QEAA@PEBDW4EUniverse@@@Z"]
     pub fn CSteamID_CSteamID(
         this: *mut CSteamID,
@@ -866,15 +866,15 @@ const _: () = {
     ["Size of CGameID"][::std::mem::size_of::<CGameID>() - 8usize];
     ["Alignment of CGameID"][::std::mem::align_of::<CGameID>() - 1usize];
 };
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?Render@CGameID@@QEBAPEBDXZ"]
     pub fn CGameID_Render(this: *const CGameID) -> *const ::std::os::raw::c_char;
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}?Render@CGameID@@SAPEBD_K@Z"]
     pub fn CGameID_Render1(ulGameID: uint64) -> *const ::std::os::raw::c_char;
 }
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}??0CGameID@@QEAA@PEBD@Z"]
     pub fn CGameID_CGameID(this: *mut CGameID, pchGameID: *const ::std::os::raw::c_char);
 }
@@ -4294,7 +4294,7 @@ const _: () = {
     ["Alignment of ISteamNetworkingSockets"]
         [::std::mem::align_of::<ISteamNetworkingSockets>() - 8usize];
 };
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}??1ISteamNetworkingSockets@@IEAA@XZ"]
     pub fn ISteamNetworkingSockets_ISteamNetworkingSockets_destructor(
         this: *mut ISteamNetworkingSockets,
@@ -4381,7 +4381,7 @@ const _: () = {
     ["Alignment of ISteamNetworkingUtils"]
         [::std::mem::align_of::<ISteamNetworkingUtils>() - 8usize];
 };
-extern "C" {
+unsafe extern "C" {
     #[link_name = "\u{1}??1ISteamNetworkingUtils@@IEAA@XZ"]
     pub fn ISteamNetworkingUtils_ISteamNetworkingUtils_destructor(this: *mut ISteamNetworkingUtils);
 }
