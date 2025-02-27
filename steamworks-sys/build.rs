@@ -15,22 +15,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // when the user passes --target-dir: https://doc.rust-lang.org/cargo/reference/config.html#buildtarget-dir
     let target_dir = std::path::Path::new(&out_dir).join("../../..");
 
-    let sdk_src = if let Ok(sdk_loc) = std::env::var("STEAM_SDK_LOCATION") {
-        std::path::Path::new(&sdk_loc).to_path_buf()
-    } else {
-        let mut path = std::path::PathBuf::new();
-        path.push(std::env::var("CARGO_MANIFEST_DIR").unwrap());
-        path.push("lib");
-        path.push("steam");
-        path
-    };
-    println!("cargo:rerun-if-env-changed=STEAM_SDK_LOCATION");
+    let sdk_src = std::path::Path::new(&std::env::var("CARGO_MANIFEST_DIR").unwrap())
+        .join("lib")
+        .join("steam");
 
     let triple = std::env::var("TARGET").unwrap();
 
     let dylib_src = sdk_src.join("redistributable_bin").join({
         if triple.contains("windows") {
             if !triple.contains("i686") {
+                // This dll has been renamed from `steam_api64` to `steam_api`.
                 "win64/steam_api.dll"
             } else {
                 panic!("Unsupported OS");
