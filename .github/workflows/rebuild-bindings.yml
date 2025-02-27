@@ -27,13 +27,12 @@ jobs:
           target: ${{ matrix.target }}
           profile: minimal
           components: rustfmt, clippy
-          override: true
 
       - name: Install alsa and udev
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
         if: runner.os == 'linux'
 
-      - run: cargo build --features "rebuild-bindings"
+      - run: cargo build --features "rebuild-bindings" --target ${{ matrix.target }}
         working-directory: steamworks-sys
 
       - uses: actions/upload-artifact@v4
