@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -39,8 +39,6 @@ jobs:
 
       - run: cargo build --features "rebuild-bindings"
         working-directory: steamworks-sys
-        env:
-          STEAM_SDK_LOCATION: ./lib/steam
 
       - uses: actions/upload-artifact@v4
         with:
