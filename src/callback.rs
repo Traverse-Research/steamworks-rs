@@ -56,7 +56,7 @@ where
     }
 }
 
-#[dead_code]
+#[allow(dead_code)]
 pub(crate) unsafe fn register_call_result<C, F, Manager>(
     inner: &Arc<Inner<Manager>>,
     api_call: sys::SteamAPICall_t,
