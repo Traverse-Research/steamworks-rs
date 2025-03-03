@@ -19,19 +19,21 @@ image = ["dep:image"]
 [workspace]
 members = [
     "./steamworks-sys",
-    "examples/chat-example",
-    "examples/workshop",
-    "examples/lobby", "examples/networking-messages",
+    # "examples/chat-example",
+    # "examples/workshop",
+    # "examples/lobby", 
+    # "examples/networking-messages",
 ]
 
 [dependencies]
 steamworks-sys = { path = "./steamworks-sys", version = "0.11.0" }
-thiserror = "1.0"
-bitflags = "1.2"
+libloading = { version = "0.8", default-features = false } 
+thiserror = "2.0"
+bitflags = "2.8"
 lazy_static = "1.4"
 serde = { version = "1.0", features = ["derive"], optional = true }
 paste = "1.0.11"
-image = { version = "0.25.1", optional = true, default-features = false }
+image = { version = "0.25", optional = true, default-features = false }
 
 [dev-dependencies]
-serial_test = "1"
+serial_test = "3.2"

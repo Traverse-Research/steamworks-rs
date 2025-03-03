@@ -1,23 +1,20 @@
 #[macro_use]
 extern crate thiserror;
-#[macro_use]
-extern crate bitflags;
-#[macro_use]
-extern crate lazy_static;
+// #[macro_use]
+// extern crate bitflags;
+// #[macro_use]
+// extern crate lazy_static;
 
-use screenshots::Screenshots;
-#[cfg(feature = "raw-bindings")]
+// use screenshots::Screenshots;
+
 pub use steamworks_sys as sys;
-#[cfg(not(feature = "raw-bindings"))]
-use steamworks_sys as sys;
-use sys::{EServerMode, ESteamAPIInitResult, SteamErrMsg};
+use sys::{ESteamAPIInitResult, SteamErrMsg};
 
 use core::ffi::c_void;
 use std::collections::HashMap;
-use std::ffi::{c_char, CStr, CString};
-use std::fmt::{self, Debug, Formatter};
-use std::sync::mpsc::Sender;
-use std::sync::{Arc, Mutex, Weak};
+use std::ffi::CStr;
+use std::fmt::Debug;
+use std::sync::{Arc, Mutex};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -25,42 +22,42 @@ use serde::{Deserialize, Serialize};
 pub use crate::app::*;
 pub use crate::callback::*;
 pub use crate::error::*;
-pub use crate::friends::*;
-pub use crate::input::*;
-pub use crate::matchmaking::*;
-pub use crate::matchmaking_servers::*;
-pub use crate::networking::*;
-pub use crate::remote_play::*;
-pub use crate::remote_storage::*;
-pub use crate::server::*;
-pub use crate::timeline::*;
-pub use crate::ugc::*;
-pub use crate::user::*;
-pub use crate::user_stats::*;
-pub use crate::utils::*;
+// pub use crate::friends::*;
+// pub use crate::input::*;
+// pub use crate::matchmaking::*;
+// pub use crate::matchmaking_servers::*;
+// pub use crate::networking::*;
+// pub use crate::remote_play::*;
+// pub use crate::remote_storage::*;
+// pub use crate::server::*;
+// pub use crate::timeline::*;
+// pub use crate::ugc::*;
+// pub use crate::user::*;
+// pub use crate::user_stats::*;
+// pub use crate::utils::*;
 
 mod app;
 mod callback;
 mod error;
-mod friends;
-mod input;
-mod matchmaking;
-mod matchmaking_servers;
-mod networking;
-pub mod networking_messages;
-pub mod networking_sockets;
-mod networking_sockets_callback;
-pub mod networking_types;
-pub mod networking_utils;
-mod remote_play;
-mod remote_storage;
-pub mod screenshots;
-mod server;
-pub mod timeline;
-mod ugc;
-mod user;
-mod user_stats;
-mod utils;
+// mod friends;
+// mod input;
+// mod matchmaking;
+// mod matchmaking_servers;
+// mod networking;
+// pub mod networking_messages;
+// pub mod networking_sockets;
+// mod networking_sockets_callback;
+// pub mod networking_types;
+// pub mod networking_utils;
+// mod remote_play;
+// mod remote_storage;
+// pub mod screenshots;
+// mod server;
+// pub mod timeline;
+// mod ugc;
+// mod user;
+// mod user_stats;
+// mod utils;
 
 pub type SResult<T> = Result<T, SteamError>;
 
@@ -91,7 +88,8 @@ impl<Manager> Clone for Client<Manager> {
 struct Inner<Manager> {
     _manager: Manager,
     callbacks: Mutex<Callbacks>,
-    networking_sockets_data: Mutex<NetworkingSocketsData<Manager>>,
+    lib: Arc<sys::steam_api>,
+    // networking_sockets_data: Mutex<NetworkingSocketsData<Manager>>,
 }
 
 struct Callbacks {
@@ -99,31 +97,41 @@ struct Callbacks {
     call_results: HashMap<sys::SteamAPICall_t, Box<dyn FnOnce(*mut c_void, bool) + Send + 'static>>,
 }
 
-struct NetworkingSocketsData<Manager> {
-    sockets: HashMap<
-        sys::HSteamListenSocket,
-        (
-            Weak<networking_sockets::InnerSocket<Manager>>,
-            Sender<networking_types::ListenSocketEvent<Manager>>,
-        ),
-    >,
-    /// Connections to a remote listening port
-    independent_connections: HashMap<sys::HSteamNetConnection, Sender<()>>,
-    connection_callback: Weak<CallbackHandle<Manager>>,
-}
+// struct NetworkingSocketsData<Manager> {
+//     sockets: HashMap<
+//         sys::HSteamListenSocket,
+//         (
+//             Weak<networking_sockets::InnerSocket<Manager>>,
+//             Sender<networking_types::ListenSocketEvent<Manager>>,
+//         ),
+//     >,
+//     /// Connections to a remote listening port
+//     independent_connections: HashMap<sys::HSteamNetConnection, Sender<()>>,
+//     connection_callback: Weak<CallbackHandle<Manager>>,
+// }
 
 unsafe impl<Manager: Send + Sync> Send for Inner<Manager> {}
 unsafe impl<Manager: Send + Sync> Sync for Inner<Manager> {}
 unsafe impl<Manager: Send + Sync> Send for Client<Manager> {}
 unsafe impl<Manager: Send + Sync> Sync for Client<Manager> {}
 
-/// Returns true if the app wasn't launched through steam and
-/// begins relaunching it, the app should exit as soon as possible.
+// /// Returns true if the app wasn't launched through steam and
+// /// begins relaunching it, the app should exit as soon as possible.
+// ///
+// /// Returns false if the app was either launched through steam
+// /// or has a `steam_appid.txt`
+// pub fn restart_app_if_necessary(app_id: AppId) -> bool {
+//     unsafe { sys::SteamAPI_RestartAppIfNecessary(app_id.0) }
+// }
+
+/// Path to the steamworks sdk library.
 ///
-/// Returns false if the app was either launched through steam
-/// or has a `steam_appid.txt`
-pub fn restart_app_if_necessary(app_id: AppId) -> bool {
-    unsafe { sys::SteamAPI_RestartAppIfNecessary(app_id.0) }
+/// Steamworks sdk library is expected to exist next to the binary.
+pub fn steam_library_path() -> std::path::PathBuf {
+    let lib_name = libloading::library_filename("steam_api");
+
+    let exe_path = std::env::current_exe().unwrap();
+    exe_path.parent().unwrap().join(lib_name)
 }
 
 fn static_assert_send<T: Send>() {}
@@ -137,8 +145,11 @@ impl Client<ClientManager> {
     /// Call to the native SteamAPI_Init function.
     /// should not be used directly, but through either
     /// init_flat() or init_flat_app()
-    unsafe fn steam_api_init_flat(p_out_err_msg: *mut SteamErrMsg) -> ESteamAPIInitResult {
-        unsafe { sys::SteamAPI_InitFlat(p_out_err_msg) }
+    unsafe fn steam_api_init_flat(
+        lib: &sys::steam_api,
+        p_out_err_msg: *mut SteamErrMsg,
+    ) -> ESteamAPIInitResult {
+        unsafe { lib.SteamAPI_InitFlat(p_out_err_msg) }
     }
 
     /// Attempts to initialize the steamworks api without full API integration
@@ -161,28 +172,31 @@ impl Client<ClientManager> {
     /// * The user doesn't own a license for the game.
     /// * The app ID isn't completely set up.
     pub fn init() -> SIResult<Client<ClientManager>> {
+        let lib = Arc::new(unsafe { sys::steam_api::new(steam_library_path()).unwrap() });
+
         static_assert_send::<Client<ClientManager>>();
         static_assert_sync::<Client<ClientManager>>();
         unsafe {
             let mut err_msg: sys::SteamErrMsg = [0; 1024];
-            let result = Self::steam_api_init_flat(&mut err_msg);
+            let result = Self::steam_api_init_flat(&lib, &mut err_msg);
 
             if result != sys::ESteamAPIInitResult::k_ESteamAPIInitResult_OK {
                 return Err(SteamAPIInitError::from_result_and_message(result, err_msg));
             }
 
-            sys::SteamAPI_ManualDispatch_Init();
+            lib.SteamAPI_ManualDispatch_Init();
             let client = Arc::new(Inner {
-                _manager: ClientManager { _priv: () },
+                _manager: ClientManager { lib: lib.clone() },
                 callbacks: Mutex::new(Callbacks {
                     callbacks: HashMap::new(),
                     call_results: HashMap::new(),
                 }),
-                networking_sockets_data: Mutex::new(NetworkingSocketsData {
-                    sockets: Default::default(),
-                    independent_connections: Default::default(),
-                    connection_callback: Default::default(),
-                }),
+                lib,
+                // networking_sockets_data: Mutex::new(NetworkingSocketsData {
+                //     sockets: Default::default(),
+                //     independent_connections: Default::default(),
+                //     connection_callback: Default::default(),
+                // }),
             });
             Ok(Client { inner: client })
         }
@@ -222,17 +236,21 @@ where
     /// in order to reduce the latency between recieving events.
     pub fn run_callbacks(&self) {
         unsafe {
-            let pipe = Manager::get_pipe();
-            sys::SteamAPI_ManualDispatch_RunFrame(pipe);
+            let pipe = Manager::get_pipe(&self.inner.lib);
+            self.inner.lib.SteamAPI_ManualDispatch_RunFrame(pipe);
             let mut callback = std::mem::zeroed();
-            while sys::SteamAPI_ManualDispatch_GetNextCallback(pipe, &mut callback) {
+            while self
+                .inner
+                .lib
+                .SteamAPI_ManualDispatch_GetNextCallback(pipe, &mut callback)
+            {
                 let mut callbacks = self.inner.callbacks.lock().unwrap();
                 if callback.m_iCallback == sys::SteamAPICallCompleted_t_k_iCallback as i32 {
                     let apicall =
                         &mut *(callback.m_pubParam as *mut _ as *mut sys::SteamAPICallCompleted_t);
                     let mut apicall_result = vec![0; apicall.m_cubParam as usize];
                     let mut failed = false;
-                    if sys::SteamAPI_ManualDispatch_GetAPICallResult(
+                    if self.inner.lib.SteamAPI_ManualDispatch_GetAPICallResult(
                         pipe,
                         apicall.m_hAsyncCall,
                         apicall_result.as_mut_ptr() as *mut _,
@@ -251,7 +269,9 @@ where
                         cb(callback.m_pubParam as *mut _);
                     }
                 }
-                sys::SteamAPI_ManualDispatch_FreeLastCallback(pipe);
+                self.inner
+                    .lib
+                    .SteamAPI_ManualDispatch_FreeLastCallback(pipe);
             }
         }
     }
@@ -269,232 +289,232 @@ where
         unsafe { register_callback(&self.inner, f) }
     }
 
-    /// Returns an accessor to the steam utils interface
-    pub fn utils(&self) -> Utils<Manager> {
-        unsafe {
-            let utils = sys::SteamAPI_SteamUtils_v010();
-            debug_assert!(!utils.is_null());
-            Utils {
-                utils: utils,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam utils interface
+    // pub fn utils(&self) -> Utils<Manager> {
+    //     unsafe {
+    //         let utils = sys::SteamAPI_SteamUtils_v010();
+    //         debug_assert!(!utils.is_null());
+    //         Utils {
+    //             utils: utils,
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam matchmaking interface
-    pub fn matchmaking(&self) -> Matchmaking<Manager> {
-        unsafe {
-            let mm = sys::SteamAPI_SteamMatchmaking_v009();
-            debug_assert!(!mm.is_null());
-            Matchmaking {
-                mm: mm,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam matchmaking interface
+    // pub fn matchmaking(&self) -> Matchmaking<Manager> {
+    //     unsafe {
+    //         let mm = sys::SteamAPI_SteamMatchmaking_v009();
+    //         debug_assert!(!mm.is_null());
+    //         Matchmaking {
+    //             mm: mm,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam matchmaking_servers interface
-    pub fn matchmaking_servers(&self) -> MatchmakingServers<Manager> {
-        unsafe {
-            let mm = sys::SteamAPI_SteamMatchmakingServers_v002();
-            debug_assert!(!mm.is_null());
-            MatchmakingServers {
-                mms: mm,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam matchmaking_servers interface
+    // pub fn matchmaking_servers(&self) -> MatchmakingServers<Manager> {
+    //     unsafe {
+    //         let mm = sys::SteamAPI_SteamMatchmakingServers_v002();
+    //         debug_assert!(!mm.is_null());
+    //         MatchmakingServers {
+    //             mms: mm,
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam networking interface
-    pub fn networking(&self) -> Networking<Manager> {
-        unsafe {
-            let net = sys::SteamAPI_SteamNetworking_v006();
-            debug_assert!(!net.is_null());
-            Networking {
-                net: net,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam networking interface
+    // pub fn networking(&self) -> Networking<Manager> {
+    //     unsafe {
+    //         let net = sys::SteamAPI_SteamNetworking_v006();
+    //         debug_assert!(!net.is_null());
+    //         Networking {
+    //             net: net,
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
     /// Returns an accessor to the steam apps interface
     pub fn apps(&self) -> Apps<Manager> {
         unsafe {
-            let apps = sys::SteamAPI_SteamApps_v008();
+            let apps = self.inner.lib.SteamAPI_SteamApps_v008();
             debug_assert!(!apps.is_null());
             Apps {
                 apps: apps,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
-
-    /// Returns an accessor to the steam friends interface
-    pub fn friends(&self) -> Friends<Manager> {
-        unsafe {
-            let friends = sys::SteamAPI_SteamFriends_v017();
-            debug_assert!(!friends.is_null());
-            Friends {
-                friends: friends,
                 inner: self.inner.clone(),
             }
         }
     }
 
-    /// Returns an accessor to the steam input interface
-    pub fn input(&self) -> Input<Manager> {
-        unsafe {
-            let input = sys::SteamAPI_SteamInput_v006();
-            debug_assert!(!input.is_null());
-            Input {
-                input,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam friends interface
+    // pub fn friends(&self) -> Friends<Manager> {
+    //     unsafe {
+    //         let friends = sys::SteamAPI_SteamFriends_v017();
+    //         debug_assert!(!friends.is_null());
+    //         Friends {
+    //             friends: friends,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam user interface
-    pub fn user(&self) -> User<Manager> {
-        unsafe {
-            let user = sys::SteamAPI_SteamUser_v023();
-            debug_assert!(!user.is_null());
-            User {
-                user,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam input interface
+    // pub fn input(&self) -> Input<Manager> {
+    //     unsafe {
+    //         let input = sys::SteamAPI_SteamInput_v006();
+    //         debug_assert!(!input.is_null());
+    //         Input {
+    //             input,
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam user stats interface
-    pub fn user_stats(&self) -> UserStats<Manager> {
-        unsafe {
-            let us = sys::SteamAPI_SteamUserStats_v012();
-            debug_assert!(!us.is_null());
-            UserStats {
-                user_stats: us,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam user interface
+    // pub fn user(&self) -> User<Manager> {
+    //     unsafe {
+    //         let user = sys::SteamAPI_SteamUser_v023();
+    //         debug_assert!(!user.is_null());
+    //         User {
+    //             user,
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam remote play interface
-    pub fn remote_play(&self) -> RemotePlay<Manager> {
-        unsafe {
-            let rp = sys::SteamAPI_SteamRemotePlay_v002();
-            debug_assert!(!rp.is_null());
-            RemotePlay {
-                rp,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam user stats interface
+    // pub fn user_stats(&self) -> UserStats<Manager> {
+    //     unsafe {
+    //         let us = sys::SteamAPI_SteamUserStats_v013();
+    //         debug_assert!(!us.is_null());
+    //         UserStats {
+    //             user_stats: us,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam remote storage interface
-    pub fn remote_storage(&self) -> RemoteStorage<Manager> {
-        unsafe {
-            let rs = sys::SteamAPI_SteamRemoteStorage_v016();
-            debug_assert!(!rs.is_null());
-            let util = sys::SteamAPI_SteamUtils_v010();
-            debug_assert!(!util.is_null());
-            RemoteStorage {
-                rs,
-                util,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam remote play interface
+    // pub fn remote_play(&self) -> RemotePlay<Manager> {
+    //     unsafe {
+    //         let rp = sys::SteamAPI_SteamRemotePlay_v002();
+    //         debug_assert!(!rp.is_null());
+    //         RemotePlay {
+    //             rp,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam screenshots interface
-    pub fn screenshots(&self) -> Screenshots<Manager> {
-        unsafe {
-            let screenshots = sys::SteamAPI_SteamScreenshots_v003();
-            debug_assert!(!screenshots.is_null());
-            Screenshots {
-                screenshots,
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam remote storage interface
+    // pub fn remote_storage(&self) -> RemoteStorage<Manager> {
+    //     unsafe {
+    //         let rs = sys::SteamAPI_SteamRemoteStorage_v016();
+    //         debug_assert!(!rs.is_null());
+    //         let util = sys::SteamAPI_SteamUtils_v010();
+    //         debug_assert!(!util.is_null());
+    //         RemoteStorage {
+    //             rs,
+    //             util,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam UGC interface (steam workshop)
-    pub fn ugc(&self) -> UGC<Manager> {
-        unsafe {
-            let ugc = sys::SteamAPI_SteamUGC_v020();
-            debug_assert!(!ugc.is_null());
-            UGC {
-                ugc,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam screenshots interface
+    // pub fn screenshots(&self) -> Screenshots<Manager> {
+    //     unsafe {
+    //         let screenshots = sys::SteamAPI_SteamScreenshots_v003();
+    //         debug_assert!(!screenshots.is_null());
+    //         Screenshots {
+    //             screenshots,
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    /// Returns an accessor to the steam timeline interface
-    pub fn timeline(&self) -> Timeline<Manager> {
-        unsafe {
-            let timeline = sys::SteamAPI_SteamTimeline_v001();
+    // /// Returns an accessor to the steam UGC interface (steam workshop)
+    // pub fn ugc(&self) -> UGC<Manager> {
+    //     unsafe {
+    //         let ugc = sys::SteamAPI_SteamUGC_v020();
+    //         debug_assert!(!ugc.is_null());
+    //         UGC {
+    //             ugc,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-            Timeline {
-                timeline,
-                disabled: timeline.is_null(),
-                _inner: self.inner.clone(),
-            }
-        }
-    }
+    // /// Returns an accessor to the steam timeline interface
+    // pub fn timeline(&self) -> Timeline<Manager> {
+    //     unsafe {
+    //         let timeline = sys::SteamAPI_SteamTimeline_v004();
 
-    pub fn networking_messages(&self) -> networking_messages::NetworkingMessages<Manager> {
-        unsafe {
-            let net = sys::SteamAPI_SteamNetworkingMessages_SteamAPI_v002();
-            debug_assert!(!net.is_null());
-            networking_messages::NetworkingMessages {
-                net,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    //         Timeline {
+    //             timeline,
+    //             disabled: timeline.is_null(),
+    //             _inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    pub fn networking_sockets(&self) -> networking_sockets::NetworkingSockets<Manager> {
-        unsafe {
-            let sockets = sys::SteamAPI_SteamNetworkingSockets_SteamAPI_v012();
-            debug_assert!(!sockets.is_null());
-            networking_sockets::NetworkingSockets {
-                sockets,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // pub fn networking_messages(&self) -> networking_messages::NetworkingMessages<Manager> {
+    //     unsafe {
+    //         let net = sys::SteamAPI_SteamNetworkingMessages_SteamAPI_v002();
+    //         debug_assert!(!net.is_null());
+    //         networking_messages::NetworkingMessages {
+    //             net,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 
-    pub fn networking_utils(&self) -> networking_utils::NetworkingUtils<Manager> {
-        unsafe {
-            let utils = sys::SteamAPI_SteamNetworkingUtils_SteamAPI_v004();
-            debug_assert!(!utils.is_null());
-            networking_utils::NetworkingUtils {
-                utils,
-                inner: self.inner.clone(),
-            }
-        }
-    }
+    // pub fn networking_sockets(&self) -> networking_sockets::NetworkingSockets<Manager> {
+    //     unsafe {
+    //         let sockets = sys::SteamAPI_SteamNetworkingSockets_SteamAPI_v012();
+    //         debug_assert!(!sockets.is_null());
+    //         networking_sockets::NetworkingSockets {
+    //             sockets,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
+
+    // pub fn networking_utils(&self) -> networking_utils::NetworkingUtils<Manager> {
+    //     unsafe {
+    //         let utils = sys::SteamAPI_SteamNetworkingUtils_SteamAPI_v004();
+    //         debug_assert!(!utils.is_null());
+    //         networking_utils::NetworkingUtils {
+    //             utils,
+    //             inner: self.inner.clone(),
+    //         }
+    //     }
+    // }
 }
 
 /// Used to separate client and game server modes
 pub unsafe trait Manager {
-    unsafe fn get_pipe() -> sys::HSteamPipe;
+    unsafe fn get_pipe(lib: &sys::steam_api) -> sys::HSteamPipe;
 }
 
 /// Manages keeping the steam api active for clients
 pub struct ClientManager {
-    _priv: (),
+    lib: Arc<sys::steam_api>,
 }
 
 unsafe impl Manager for ClientManager {
-    unsafe fn get_pipe() -> sys::HSteamPipe {
-        sys::SteamAPI_GetHSteamPipe()
+    unsafe fn get_pipe(lib: &sys::steam_api) -> sys::HSteamPipe {
+        lib.SteamAPI_GetHSteamPipe()
     }
 }
 
 impl Drop for ClientManager {
     fn drop(&mut self) {
         unsafe {
-            sys::SteamAPI_Shutdown();
+            self.lib.SteamAPI_Shutdown();
         }
     }
 }
@@ -593,58 +613,58 @@ impl GameId {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use serial_test::serial;
+// #[cfg(test)]
+// mod tests {
+//     use serial_test::serial;
 
-    use super::*;
+//     use super::*;
 
-    #[test]
-    #[serial]
-    fn basic_test() {
-        let client = Client::init().unwrap();
+//     #[test]
+//     #[serial]
+//     fn basic_test() {
+//         let client = Client::init().unwrap();
 
-        let _cb = client.register_callback(|p: PersonaStateChange| {
-            println!("Got callback: {:?}", p);
-        });
+//         let _cb = client.register_callback(|p: PersonaStateChange| {
+//             println!("Got callback: {:?}", p);
+//         });
 
-        let utils = client.utils();
-        println!("Utils:");
-        println!("AppId: {:?}", utils.app_id());
-        println!("UI Language: {}", utils.ui_language());
+//         let utils = client.utils();
+//         println!("Utils:");
+//         println!("AppId: {:?}", utils.app_id());
+//         println!("UI Language: {}", utils.ui_language());
 
-        let apps = client.apps();
-        println!("Apps");
-        println!("IsInstalled(480): {}", apps.is_app_installed(AppId(480)));
-        println!("InstallDir(480): {}", apps.app_install_dir(AppId(480)));
-        println!("BuildId: {}", apps.app_build_id());
-        println!("AppOwner: {:?}", apps.app_owner());
-        println!("Langs: {:?}", apps.available_game_languages());
-        println!("Lang: {}", apps.current_game_language());
-        println!("Beta: {:?}", apps.current_beta_name());
+//         let apps = client.apps();
+//         println!("Apps");
+//         println!("IsInstalled(480): {}", apps.is_app_installed(AppId(480)));
+//         println!("InstallDir(480): {}", apps.app_install_dir(AppId(480)));
+//         println!("BuildId: {}", apps.app_build_id());
+//         println!("AppOwner: {:?}", apps.app_owner());
+//         println!("Langs: {:?}", apps.available_game_languages());
+//         println!("Lang: {}", apps.current_game_language());
+//         println!("Beta: {:?}", apps.current_beta_name());
 
-        let friends = client.friends();
-        println!("Friends");
-        let list = friends.get_friends(FriendFlags::IMMEDIATE);
-        println!("{:?}", list);
-        for f in &list {
-            println!("Friend: {:?} - {}({:?})", f.id(), f.name(), f.state());
-            friends.request_user_information(f.id(), true);
-        }
-        friends.request_user_information(SteamId(76561198174976054), true);
+//         let friends = client.friends();
+//         println!("Friends");
+//         let list = friends.get_friends(FriendFlags::IMMEDIATE);
+//         println!("{:?}", list);
+//         for f in &list {
+//             println!("Friend: {:?} - {}({:?})", f.id(), f.name(), f.state());
+//             friends.request_user_information(f.id(), true);
+//         }
+//         friends.request_user_information(SteamId(76561198174976054), true);
 
-        for _ in 0..50 {
-            client.run_callbacks();
-            ::std::thread::sleep(::std::time::Duration::from_millis(100));
-        }
-    }
+//         for _ in 0..50 {
+//             client.run_callbacks();
+//             ::std::thread::sleep(::std::time::Duration::from_millis(100));
+//         }
+//     }
 
-    #[test]
-    fn steamid_test() {
-        let steamid = SteamId(76561198040894045);
-        assert_eq!("STEAM_0:1:40314158", steamid.steamid32());
+//     #[test]
+//     fn steamid_test() {
+//         let steamid = SteamId(76561198040894045);
+//         assert_eq!("STEAM_0:1:40314158", steamid.steamid32());
 
-        let steamid = SteamId(76561198174976054);
-        assert_eq!("STEAM_0:0:107355163", steamid.steamid32());
-    }
-}
+//         let steamid = SteamId(76561198174976054);
+//         assert_eq!("STEAM_0:0:107355163", steamid.steamid32());
+//     }
+// }

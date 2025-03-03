@@ -8,13 +8,14 @@ license = "MIT / Apache-2.0"
 repository = "https://github.com/Noxime/steamworks-rs"
 documentation = "https://docs.rs/steamworks-sys"
 edition = "2021"
-rust-version = "1.73.0"
+rust-version = "1.85.0"
 
 [features]
 default = []
 rebuild-bindings = ["bindgen"]
 
 [dependencies]
+libloading = { version = "0.8", default-features = false } 
 
 [build-dependencies]
-bindgen = { version = "0.69.2", optional = true }
+bindgen = { version = "0.71", optional = true }

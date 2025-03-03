@@ -25,6 +25,7 @@ impl<Manager> UserStats<Manager> {
                 self.user_stats,
                 name.as_ptr() as *const _,
             );
+
             register_call_result::<sys::LeaderboardFindResult_t, _, _>(
                 &self.inner,
                 api_call,
@@ -282,13 +283,6 @@ impl<Manager> UserStats<Manager> {
     pub fn get_leaderboard_entry_count(&self, leaderboard: &Leaderboard) -> i32 {
         unsafe {
             sys::SteamAPI_ISteamUserStats_GetLeaderboardEntryCount(self.user_stats, leaderboard.0)
-        }
-    }
-
-    /// Triggers a [`UserStatsReceived`](./struct.UserStatsReceived.html) callback.
-    pub fn request_current_stats(&self) {
-        unsafe {
-            sys::SteamAPI_ISteamUserStats_RequestCurrentStats(self.user_stats);
         }
     }
 

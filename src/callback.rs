@@ -1,7 +1,5 @@
 use super::*;
 
-use crate::sys;
-
 use std::sync::{Arc, Weak};
 
 pub unsafe trait Callback {
@@ -58,6 +56,7 @@ where
     }
 }
 
+#[allow(dead_code)]
 pub(crate) unsafe fn register_call_result<C, F, Manager>(
     inner: &Arc<Inner<Manager>>,
     api_call: sys::SteamAPICall_t,

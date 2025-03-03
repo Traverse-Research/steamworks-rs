@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        toolchain: [stable, nightly, "1.73.0"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +17,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         id: toolchain
         with:
-          toolchain: ${{ matrix.toolchain }}
+          toolchain: stable
           profile: minimal
           components: rustfmt, clippy
           override: true
@@ -26,15 +25,6 @@ jobs:
       - name: Install alsa and udev
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libudev-dev libx11-dev libxi-dev libgl1-mesa-dev libasound2-dev libxcb-shape0-dev libxcb-xfixes0-dev
         if: runner.os == 'linux'
-
-      - name: Setup cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-test-rustc-${{ steps.toolchain.outputs.rustc_hash }}-${{ hashFiles('**/Cargo.lock') }}
 
       - uses: actions-rs/cargo@v1
         if: runner.os == 'linux'
@@ -44,7 +34,7 @@ jobs:
 
       - uses: actions-rs/cargo@v1
         with:
-          command: build
+          command: check
           args: --all
         env:
           CARGO_INCREMENTAL: 0

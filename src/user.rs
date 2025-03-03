@@ -130,12 +130,12 @@ impl<Manager> User<Manager> {
     /// ISteamUserAuth/AuthenticateUserTicket Web API.
     ///
     /// The calling application must wait for the
-    /// `TicketForWebApiResponse` callback generated  
+    /// `TicketForWebApiResponse` callback generated
     /// by the API call to access the ticket.
-    ///  
+    ///
     /// It is best practice to use an identity string for
     /// each service that will consume tickets.
-    ///   
+    ///
     /// This API can not be used to create a ticket for
     /// use by the BeginAuthSession/ISteamGameServer::BeginAuthSession.
     /// Use the `authentication_session_ticket` API instead
