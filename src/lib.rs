@@ -124,7 +124,9 @@ unsafe impl<Manager: Send + Sync> Sync for Client<Manager> {}
 //     unsafe { sys::SteamAPI_RestartAppIfNecessary(app_id.0) }
 // }
 
-// TODO: docs
+/// Path to the steamworks sdk library.
+///
+/// Steamworks sdk library is expected to exist next to the binary.
 pub fn steam_library_path() -> std::path::PathBuf {
     let lib_name = libloading::library_filename("steam_api");
 
