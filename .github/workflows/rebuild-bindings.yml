@@ -1,7 +1,6 @@
 name: Rebuild bindings
 
-# on: workflow_dispatch
-on: push
+on: workflow_dispatch
 
 env:
   CARGO_TERM_COLOR: always
