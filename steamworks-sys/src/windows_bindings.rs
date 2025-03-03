@@ -150,7 +150,7 @@ pub type RTime32 = uint32;
 pub type SteamAPICall_t = uint64;
 pub type AccountID_t = uint32;
 pub type PartyBeaconID_t = uint64;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamIPType {
@@ -170,7 +170,7 @@ pub union SteamIPAddress_t__bindgen_ty_1 {
     pub m_rgubIPv6: [uint8; 16usize],
     pub m_ipv6Qword: [uint64; 2usize],
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUniverse {
@@ -181,7 +181,7 @@ pub enum EUniverse {
     k_EUniverseDev = 4,
     k_EUniverseMax = 5,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EResult {
@@ -316,7 +316,7 @@ pub enum EResult {
     k_EResultFamilySizeLimitExceeded = 129,
     k_EResultOfflineAppCacheInvalid = 130,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EVoiceResult {
@@ -332,7 +332,7 @@ pub enum EVoiceResult {
     k_EVoiceResultReceiverDidNotAnswer = 9,
 }
 pub type HAuthTicket = uint32;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EBeginAuthSessionResult {
@@ -343,7 +343,7 @@ pub enum EBeginAuthSessionResult {
     k_EBeginAuthSessionResultGameMismatch = 4,
     k_EBeginAuthSessionResultExpiredTicket = 5,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUserHasLicenseForAppResult {
@@ -351,7 +351,7 @@ pub enum EUserHasLicenseForAppResult {
     k_EUserHasLicenseResultDoesNotHaveLicense = 1,
     k_EUserHasLicenseResultNoAuth = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EAccountType {
@@ -368,7 +368,7 @@ pub enum EAccountType {
     k_EAccountTypeAnonUser = 10,
     k_EAccountTypeMax = 11,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EChatEntryType {
@@ -395,7 +395,7 @@ pub enum ENotificationPosition {
     k_EPositionBottomLeft = 2,
     k_EPositionBottomRight = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EDurationControlOnlineState {
@@ -582,15 +582,15 @@ impl CSteamID_SteamID_t_SteamIDComponent_t {
     }
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?Render@CSteamID@@QEBAPEBDXZ"]
+    #[link_name = "\u{1}_ZNK8CSteamID6RenderEv"]
     pub fn CSteamID_Render(this: *const CSteamID) -> *const ::std::os::raw::c_char;
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?Render@CSteamID@@SAPEBD_K@Z"]
+    #[link_name = "\u{1}_ZN8CSteamID6RenderEy"]
     pub fn CSteamID_Render1(ulSteamID: uint64) -> *const ::std::os::raw::c_char;
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?SetFromString@CSteamID@@QEAAXPEBDW4EUniverse@@@Z"]
+    #[link_name = "\u{1}_ZN8CSteamID13SetFromStringEPKc9EUniverse"]
     pub fn CSteamID_SetFromString(
         this: *mut CSteamID,
         pchSteamID: *const ::std::os::raw::c_char,
@@ -598,7 +598,7 @@ unsafe extern "C" {
     );
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?SetFromStringStrict@CSteamID@@QEAA_NPEBDW4EUniverse@@@Z"]
+    #[link_name = "\u{1}_ZN8CSteamID19SetFromStringStrictEPKc9EUniverse"]
     pub fn CSteamID_SetFromStringStrict(
         this: *mut CSteamID,
         pchSteamID: *const ::std::os::raw::c_char,
@@ -606,11 +606,11 @@ unsafe extern "C" {
     ) -> bool;
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?BValidExternalSteamID@CSteamID@@QEBA_NXZ"]
+    #[link_name = "\u{1}_ZNK8CSteamID21BValidExternalSteamIDEv"]
     pub fn CSteamID_BValidExternalSteamID(this: *const CSteamID) -> bool;
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}??0CSteamID@@QEAA@PEBDW4EUniverse@@@Z"]
+    #[link_name = "\u{1}_ZN8CSteamIDC1EPKc9EUniverse"]
     pub fn CSteamID_CSteamID(
         this: *mut CSteamID,
         pchSteamID: *const ::std::os::raw::c_char,
@@ -661,7 +661,7 @@ impl CSteamID {
 pub struct CGameID {
     pub __bindgen_anon_1: CGameID__bindgen_ty_1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum CGameID_EGameIDType {
@@ -805,15 +805,15 @@ pub union CGameID__bindgen_ty_1 {
     pub m_gameID: CGameID_GameID_t,
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?Render@CGameID@@QEBAPEBDXZ"]
+    #[link_name = "\u{1}_ZNK7CGameID6RenderEv"]
     pub fn CGameID_Render(this: *const CGameID) -> *const ::std::os::raw::c_char;
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}?Render@CGameID@@SAPEBD_K@Z"]
+    #[link_name = "\u{1}_ZN7CGameID6RenderEy"]
     pub fn CGameID_Render1(ulGameID: uint64) -> *const ::std::os::raw::c_char;
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}??0CGameID@@QEAA@PEBD@Z"]
+    #[link_name = "\u{1}_ZN7CGameIDC1EPKc"]
     pub fn CGameID_CGameID(this: *mut CGameID, pchGameID: *const ::std::os::raw::c_char);
 }
 impl CGameID {
@@ -832,7 +832,7 @@ impl CGameID {
         __bindgen_tmp.assume_init()
     }
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EGameSearchErrorCode_t {
@@ -846,7 +846,7 @@ pub enum EGameSearchErrorCode_t {
     k_EGameSearchErrorCode_Failed_NotAuthorized = 8,
     k_EGameSearchErrorCode_Failed_Unknown_Error = 9,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EPlayerResult_t {
@@ -856,7 +856,7 @@ pub enum EPlayerResult_t {
     k_EPlayerResultIncomplete = 4,
     k_EPlayerResultCompleted = 5,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamIPv6ConnectivityProtocol {
@@ -864,7 +864,7 @@ pub enum ESteamIPv6ConnectivityProtocol {
     k_ESteamIPv6ConnectivityProtocol_HTTP = 1,
     k_ESteamIPv6ConnectivityProtocol_UDP = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamIPv6ConnectivityState {
@@ -893,7 +893,7 @@ pub const CCallbackBase_k_ECallbackFlagsRegistered: CCallbackBase__bindgen_ty_1 
     CCallbackBase__bindgen_ty_1::k_ECallbackFlagsRegistered;
 pub const CCallbackBase_k_ECallbackFlagsGameServer: CCallbackBase__bindgen_ty_1 =
     CCallbackBase__bindgen_ty_1::k_ECallbackFlagsGameServer;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum CCallbackBase__bindgen_ty_1 {
@@ -923,7 +923,7 @@ pub struct ISteamUser__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamUser {
     pub vtable_: *const ISteamUser__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EFriendRelationship {
@@ -938,7 +938,7 @@ pub enum EFriendRelationship {
     k_EFriendRelationshipMax = 8,
 }
 pub type FriendsGroupID_t = int16;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EPersonaState {
@@ -961,7 +961,7 @@ pub struct FriendGameInfo_t {
     pub m_usQueryPort: uint16,
     pub m_steamIDLobby: CSteamID,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EOverlayToStoreFlag {
@@ -969,14 +969,14 @@ pub enum EOverlayToStoreFlag {
     k_EOverlayToStoreFlag_AddToCart = 1,
     k_EOverlayToStoreFlag_AddToCartAndShow = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EActivateGameOverlayToWebPageMode {
     k_EActivateGameOverlayToWebPageMode_Default = 0,
     k_EActivateGameOverlayToWebPageMode_Modal = 1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ECommunityProfileItemType {
@@ -986,7 +986,7 @@ pub enum ECommunityProfileItemType {
     k_ECommunityProfileItemType_ProfileBackground = 3,
     k_ECommunityProfileItemType_MiniProfileBackground = 4,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ECommunityProfileItemProperty {
@@ -1020,21 +1020,21 @@ pub enum ESteamAPICallFailure {
     k_ESteamAPICallFailureInvalidHandle = 2,
     k_ESteamAPICallFailureMismatchedCallback = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EGamepadTextInputMode {
     k_EGamepadTextInputModeNormal = 0,
     k_EGamepadTextInputModePassword = 1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EGamepadTextInputLineMode {
     k_EGamepadTextInputLineModeSingleLine = 0,
     k_EGamepadTextInputLineModeMultipleLines = 1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EFloatingGamepadTextInputMode {
@@ -1043,7 +1043,7 @@ pub enum EFloatingGamepadTextInputMode {
     k_EFloatingGamepadTextInputModeModeEmail = 2,
     k_EFloatingGamepadTextInputModeModeNumeric = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ETextFilteringContext {
@@ -1068,7 +1068,7 @@ pub struct SteamAPICallCompleted_t {
 }
 pub const SteamAPICallCompleted_t_k_iCallback: SteamAPICallCompleted_t__bindgen_ty_1 =
     SteamAPICallCompleted_t__bindgen_ty_1::k_iCallback;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamAPICallCompleted_t__bindgen_ty_1 {
@@ -1081,7 +1081,7 @@ pub struct MatchMakingKeyValuePair_t {
     pub m_szKey: [::std::os::raw::c_char; 256usize],
     pub m_szValue: [::std::os::raw::c_char; 256usize],
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EMatchMakingServerResponse {
@@ -1136,7 +1136,7 @@ pub struct gameserveritem_t {
     #[doc = " steamID of the game server - invalid if it's doesn't have one (old server, or not connected to Steam)"]
     pub m_steamID: CSteamID,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ELobbyType {
@@ -1157,7 +1157,7 @@ pub enum ELobbyComparison {
     k_ELobbyComparisonEqualToOrGreaterThan = 2,
     k_ELobbyComparisonNotEqual = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ELobbyDistanceFilter {
@@ -1217,7 +1217,7 @@ pub struct ISteamGameSearch__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamGameSearch {
     pub vtable_: *const ISteamGameSearch__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamPartyBeaconLocationType {
@@ -1231,7 +1231,7 @@ pub struct SteamPartyBeaconLocation_t {
     pub m_eType: ESteamPartyBeaconLocationType,
     pub m_ulLocationID: uint64,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamPartyBeaconLocationData {
@@ -1258,7 +1258,7 @@ pub type UGCHandle_t = uint64;
 pub type PublishedFileUpdateHandle_t = uint64;
 pub type PublishedFileId_t = uint64;
 pub type UGCFileWriteStreamHandle_t = uint64;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ERemoteStoragePlatform {
@@ -1270,9 +1270,9 @@ pub enum ERemoteStoragePlatform {
     k_ERemoteStoragePlatformSwitch = 16,
     k_ERemoteStoragePlatformAndroid = 32,
     k_ERemoteStoragePlatformIOS = 64,
-    k_ERemoteStoragePlatformAll = -1,
+    k_ERemoteStoragePlatformAll = 4294967295,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ERemoteStoragePublishedFileVisibility {
@@ -1285,7 +1285,7 @@ impl EWorkshopFileType {
     pub const k_EWorkshopFileTypeCommunity: EWorkshopFileType =
         EWorkshopFileType::k_EWorkshopFileTypeFirst;
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EWorkshopFileType {
@@ -1308,14 +1308,14 @@ pub enum EWorkshopFileType {
     k_EWorkshopFileTypeClip = 16,
     k_EWorkshopFileTypeMax = 17,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EWorkshopFileAction {
     k_EWorkshopFileActionPlayed = 0,
     k_EWorkshopFileActionCompleted = 1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EWorkshopEnumerationType {
@@ -1327,14 +1327,14 @@ pub enum EWorkshopEnumerationType {
     k_EWorkshopEnumerationTypeContentByFriends = 5,
     k_EWorkshopEnumerationTypeRecentFromFollowedUsers = 6,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EWorkshopVideoProvider {
     k_EWorkshopVideoProviderNone = 0,
     k_EWorkshopVideoProviderYoutube = 1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUGCReadAction {
@@ -1342,7 +1342,7 @@ pub enum EUGCReadAction {
     k_EUGCRead_ContinueReading = 1,
     k_EUGCRead_Close = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ERemoteStorageLocalFileChange {
@@ -1350,7 +1350,7 @@ pub enum ERemoteStorageLocalFileChange {
     k_ERemoteStorageLocalFileChange_FileUpdated = 1,
     k_ERemoteStorageLocalFileChange_FileDeleted = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ERemoteStorageFilePathType {
@@ -1367,7 +1367,7 @@ pub struct ISteamRemoteStorage {
 }
 pub type SteamLeaderboard_t = uint64;
 pub type SteamLeaderboardEntries_t = uint64;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ELeaderboardDataRequest {
@@ -1376,7 +1376,7 @@ pub enum ELeaderboardDataRequest {
     k_ELeaderboardDataRequestFriends = 2,
     k_ELeaderboardDataRequestUsers = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ELeaderboardSortMethod {
@@ -1384,7 +1384,7 @@ pub enum ELeaderboardSortMethod {
     k_ELeaderboardSortMethodAscending = 1,
     k_ELeaderboardSortMethodDescending = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ELeaderboardDisplayType {
@@ -1393,7 +1393,7 @@ pub enum ELeaderboardDisplayType {
     k_ELeaderboardDisplayTypeTimeSeconds = 2,
     k_ELeaderboardDisplayTypeTimeMilliSeconds = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ELeaderboardUploadScoreMethod {
@@ -1424,7 +1424,7 @@ pub struct ISteamApps__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamApps {
     pub vtable_: *const ISteamApps__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EP2PSend {
@@ -1447,7 +1447,7 @@ pub struct P2PSessionState_t {
 }
 pub type SNetSocket_t = uint32;
 pub type SNetListenSocket_t = uint32;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESNetSocketConnectionType {
@@ -1464,7 +1464,7 @@ pub struct ISteamNetworking {
     pub vtable_: *const ISteamNetworking__bindgen_vtable,
 }
 pub type ScreenshotHandle = uint32;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EVRScreenshotType {
@@ -1482,7 +1482,7 @@ pub struct ISteamScreenshots__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamScreenshots {
     pub vtable_: *const ISteamScreenshots__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum AudioPlayback_Status {
@@ -1505,7 +1505,7 @@ pub struct ISteamMusicRemote__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamMusicRemote {
     pub vtable_: *const ISteamMusicRemote__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EHTTPMethod {
@@ -1527,7 +1527,7 @@ pub struct ISteamHTTP__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamHTTP {
     pub vtable_: *const ISteamHTTP__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EInputSourceMode {
@@ -1549,7 +1549,7 @@ pub enum EInputSourceMode {
     k_EInputSourceMode_SingleButton = 15,
     k_EInputSourceMode_Switches = 16,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EInputActionOrigin {
@@ -1966,7 +1966,7 @@ pub enum EInputActionOrigin {
     k_EInputActionOrigin_Count = 410,
     k_EInputActionOrigin_MaximumPossibleValue = 32767,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EXboxOrigin {
@@ -2000,14 +2000,14 @@ pub enum EXboxOrigin {
     k_EXboxOrigin_DPad_East = 27,
     k_EXboxOrigin_Count = 28,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamControllerPad {
     k_ESteamControllerPad_Left = 0,
     k_ESteamControllerPad_Right = 1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EControllerHapticLocation {
@@ -2015,7 +2015,7 @@ pub enum EControllerHapticLocation {
     k_EControllerHapticLocation_Right = 2,
     k_EControllerHapticLocation_Both = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamInputType {
@@ -2037,7 +2037,7 @@ pub enum ESteamInputType {
     k_ESteamInputType_Count = 15,
     k_ESteamInputType_MaximumPossibleValue = 255,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamInputGlyphSize {
@@ -2046,7 +2046,7 @@ pub enum ESteamInputGlyphSize {
     k_ESteamInputGlyphSize_Large = 2,
     k_ESteamInputGlyphSize_Count = 3,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamInputActionEventType {
@@ -2124,7 +2124,7 @@ pub struct ISteamInput__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamInput {
     pub vtable_: *const ISteamInput__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EControllerActionOrigin {
@@ -2553,7 +2553,7 @@ pub enum EUGCMatchingUGCType {
     k_EUGCMatchingUGCType_GameManagedItems = 12,
     k_EUGCMatchingUGCType_All = -1,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUserUGCList {
@@ -2567,7 +2567,7 @@ pub enum EUserUGCList {
     k_EUserUGCList_UsedOrPlayed = 7,
     k_EUserUGCList_Followed = 8,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUserUGCListSortOrder {
@@ -2579,7 +2579,7 @@ pub enum EUserUGCListSortOrder {
     k_EUserUGCListSortOrder_VoteScoreDesc = 5,
     k_EUserUGCListSortOrder_ForModeration = 6,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUGCQuery {
@@ -2604,7 +2604,7 @@ pub enum EUGCQuery {
     k_EUGCQuery_RankedByLifetimePlaytimeSessions = 18,
     k_EUGCQuery_RankedByLastUpdatedDate = 19,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EItemUpdateStatus {
@@ -2615,7 +2615,7 @@ pub enum EItemUpdateStatus {
     k_EItemUpdateStatusUploadingPreviewFile = 4,
     k_EItemUpdateStatusCommittingChanges = 5,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EItemStatistic {
@@ -2633,7 +2633,7 @@ pub enum EItemStatistic {
     k_EItemStatistic_NumSecondsPlayedDuringTimePeriod = 11,
     k_EItemStatistic_NumPlaytimeSessionsDuringTimePeriod = 12,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EItemPreviewType {
@@ -2645,7 +2645,7 @@ pub enum EItemPreviewType {
     k_EItemPreviewType_Clip = 5,
     k_EItemPreviewType_ReservedMax = 255,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EUGCContentDescriptorID {
@@ -2701,7 +2701,7 @@ pub struct ISteamHTMLSurface__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamHTMLSurface {
     pub vtable_: *const ISteamHTMLSurface__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ISteamHTMLSurface_EHTMLMouseButton {
@@ -2709,7 +2709,7 @@ pub enum ISteamHTMLSurface_EHTMLMouseButton {
     eHTMLMouseButton_Right = 1,
     eHTMLMouseButton_Middle = 2,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ISteamHTMLSurface_EMouseCursor {
@@ -2756,7 +2756,7 @@ pub enum ISteamHTMLSurface_EMouseCursor {
     dc_custom = 40,
     dc_last = 41,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ISteamHTMLSurface_EHTMLKeyModifiers {
@@ -2784,7 +2784,7 @@ pub struct ISteamInventory__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamInventory {
     pub vtable_: *const ISteamInventory__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ETimelineGameMode {
@@ -2795,7 +2795,7 @@ pub enum ETimelineGameMode {
     k_ETimelineGameMode_LoadingScreen = 4,
     k_ETimelineGameMode_Max = 5,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ETimelineEventClipPriority {
@@ -2819,7 +2819,7 @@ pub struct ISteamVideo__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamVideo {
     pub vtable_: *const ISteamVideo__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum EParentalFeature {
@@ -2848,7 +2848,7 @@ pub struct ISteamParentalSettings__bindgen_vtable(::std::os::raw::c_void);
 pub struct ISteamParentalSettings {
     pub vtable_: *const ISteamParentalSettings__bindgen_vtable,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamDeviceFormFactor {
@@ -2928,7 +2928,7 @@ pub enum ESteamNetworkingAvailability {
     k_ESteamNetworkingAvailability_Unknown = 0,
     k_ESteamNetworkingAvailability__Force32bit = 2147483647,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[doc = " Different methods of describing the identity of a network host"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -2943,7 +2943,7 @@ pub enum ESteamNetworkingIdentityType {
     k_ESteamNetworkingIdentityType_UnknownType = 4,
     k_ESteamNetworkingIdentityType__Force32bit = 2147483647,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[doc = " \"Fake IPs\" are assigned to hosts, to make it easier to interface with\n older code that assumed all hosts will have an IPv4 address"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -2963,7 +2963,7 @@ pub struct SteamNetworkingIPAddr {
 }
 pub const SteamNetworkingIPAddr_k_cchMaxString: SteamNetworkingIPAddr__bindgen_ty_1 =
     SteamNetworkingIPAddr__bindgen_ty_1::k_cchMaxString;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamNetworkingIPAddr__bindgen_ty_1 {
@@ -3001,7 +3001,7 @@ pub const SteamNetworkingIdentity_k_cchMaxXboxPairwiseID: SteamNetworkingIdentit
     SteamNetworkingIdentity__bindgen_ty_1::k_cchMaxXboxPairwiseID;
 pub const SteamNetworkingIdentity_k_cbMaxGenericBytes: SteamNetworkingIdentity__bindgen_ty_1 =
     SteamNetworkingIdentity__bindgen_ty_1::k_cchMaxGenericString;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamNetworkingIdentity__bindgen_ty_1 {
@@ -3156,7 +3156,7 @@ pub struct SteamNetworkingMessage_t {
 pub struct SteamNetworkPingLocation_t {
     pub m_data: [uint8; 512usize],
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[doc = " Configuration values can be applied to different types of objects."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -3172,7 +3172,7 @@ pub enum ESteamNetworkingConfigScope {
     #[doc = " Options for a specific connection."]
     k_ESteamNetworkingConfigScope__Force32Bit = 2147483647,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamNetworkingConfigDataType {
@@ -3183,7 +3183,7 @@ pub enum ESteamNetworkingConfigDataType {
     k_ESteamNetworkingConfig_Ptr = 5,
     k_ESteamNetworkingConfigDataType__Force32Bit = 2147483647,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[doc = " Configuration options"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -3369,7 +3369,7 @@ pub enum ESteamNetworkingGetConfigValueResult {
     k_ESteamNetworkingGetConfigValue_OKInherited = 2,
     k_ESteamNetworkingGetConfigValueResult__Force32Bit = 2147483647,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[doc = " Detail level for diagnostic output callback.\n See ISteamNetworkingUtils::SetDebugOutputFunction"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -3409,7 +3409,7 @@ pub struct SteamNetworkingMessagesSessionRequest_t {
 pub const SteamNetworkingMessagesSessionRequest_t_k_iCallback:
     SteamNetworkingMessagesSessionRequest_t__bindgen_ty_1 =
     SteamNetworkingMessagesSessionRequest_t__bindgen_ty_1::k_iCallback;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamNetworkingMessagesSessionRequest_t__bindgen_ty_1 {
@@ -3425,7 +3425,7 @@ pub struct SteamNetworkingMessagesSessionFailed_t {
 pub const SteamNetworkingMessagesSessionFailed_t_k_iCallback:
     SteamNetworkingMessagesSessionFailed_t__bindgen_ty_1 =
     SteamNetworkingMessagesSessionFailed_t__bindgen_ty_1::k_iCallback;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamNetworkingMessagesSessionFailed_t__bindgen_ty_1 {
@@ -3455,7 +3455,7 @@ pub struct ISteamNetworkingSockets {
     pub vtable_: *const ISteamNetworkingSockets__bindgen_vtable,
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}??1ISteamNetworkingSockets@@IEAA@XZ"]
+    #[link_name = "\u{1}_ZN23ISteamNetworkingSocketsD1Ev"]
     pub fn ISteamNetworkingSockets_ISteamNetworkingSockets_destructor(
         this: *mut ISteamNetworkingSockets,
     );
@@ -3480,7 +3480,7 @@ pub struct SteamNetConnectionStatusChangedCallback_t {
 pub const SteamNetConnectionStatusChangedCallback_t_k_iCallback:
     SteamNetConnectionStatusChangedCallback_t__bindgen_ty_1 =
     SteamNetConnectionStatusChangedCallback_t__bindgen_ty_1::k_iCallback;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamNetConnectionStatusChangedCallback_t__bindgen_ty_1 {
@@ -3497,7 +3497,7 @@ pub struct SteamNetAuthenticationStatus_t {
 }
 pub const SteamNetAuthenticationStatus_t_k_iCallback: SteamNetAuthenticationStatus_t__bindgen_ty_1 =
     SteamNetAuthenticationStatus_t__bindgen_ty_1::k_iCallback;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamNetAuthenticationStatus_t__bindgen_ty_1 {
@@ -3512,7 +3512,7 @@ pub struct ISteamNetworkingUtils {
     pub vtable_: *const ISteamNetworkingUtils__bindgen_vtable,
 }
 unsafe extern "C" {
-    #[link_name = "\u{1}??1ISteamNetworkingUtils@@IEAA@XZ"]
+    #[link_name = "\u{1}_ZN21ISteamNetworkingUtilsD1Ev"]
     pub fn ISteamNetworkingUtils_ISteamNetworkingUtils_destructor(this: *mut ISteamNetworkingUtils);
 }
 impl ISteamNetworkingUtils {
@@ -3538,13 +3538,13 @@ pub struct SteamRelayNetworkStatus_t {
 }
 pub const SteamRelayNetworkStatus_t_k_iCallback: SteamRelayNetworkStatus_t__bindgen_ty_1 =
     SteamRelayNetworkStatus_t__bindgen_ty_1::k_iCallback;
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum SteamRelayNetworkStatus_t__bindgen_ty_1 {
     k_iCallback = 1281,
 }
-#[repr(i32)]
+#[repr(u32)]
 #[non_exhaustive]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum ESteamAPIInitResult {
