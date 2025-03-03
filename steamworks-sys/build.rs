@@ -70,6 +70,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             )
             .allowlist_item("SteamAPI\\w+")
             .dynamic_library_name("steam_api")
+            // https://github.com/rust-lang/rust-bindgen/issues/3166
+            .layout_tests(false)
             .clang_arg("-xc++")
             .clang_arg("-std=c++11")
             .clang_arg(format!("-I{}", sdk_src.join("public").display()))
