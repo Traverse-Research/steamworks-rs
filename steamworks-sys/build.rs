@@ -23,11 +23,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let dylib_src = sdk_src.join("redistributable_bin").join({
         if triple.contains("windows") {
-            if !triple.contains("i686") {
+            if triple.starts_with("x86_64") {
                 // This dll has been renamed from `steam_api64` to `steam_api`.
                 "win64/steam_api.dll"
             } else {
-                panic!("Unsupported OS");
+                panic!("Unsupported Windows architecture {triple}");
             }
         } else if triple.contains("linux") {
             if triple.contains("i686") {
