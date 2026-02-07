@@ -12,7 +12,7 @@ use sys::{ESteamAPIInitResult, SteamErrMsg};
 
 use core::ffi::c_void;
 use std::collections::HashMap;
-use std::ffi::CStr;
+use std::ffi::{CStr, CString};
 use std::fmt::Debug;
 use std::sync::{Arc, Mutex};
 
@@ -33,7 +33,7 @@ pub use crate::error::*;
 // pub use crate::timeline::*;
 // pub use crate::ugc::*;
 // pub use crate::user::*;
-// pub use crate::user_stats::*;
+pub use crate::user_stats::*;
 // pub use crate::utils::*;
 
 mod app;
@@ -56,7 +56,7 @@ mod error;
 // pub mod timeline;
 // mod ugc;
 // mod user;
-// mod user_stats;
+mod user_stats;
 // mod utils;
 
 pub type SResult<T> = Result<T, SteamError>;
@@ -344,6 +344,18 @@ where
             debug_assert!(!apps.is_null());
             Apps {
                 apps: apps,
+                inner: self.inner.clone(),
+            }
+        }
+    }
+
+    /// Returns an accessor to the steam user stats interface
+    pub fn user_stats(&self) -> UserStats<Manager> {
+        unsafe {
+            let us = self.inner.lib.SteamAPI_SteamUserStats_v013();
+            debug_assert!(!us.is_null());
+            UserStats {
+                user_stats: us,
                 inner: self.inner.clone(),
             }
         }
