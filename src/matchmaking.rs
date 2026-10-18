@@ -22,28 +22,6 @@ pub enum LobbyType {
     Invisible,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub struct LobbyId(pub(crate) u64);
-
-impl LobbyId {
-    /// Creates a `LobbyId` from a raw 64 bit value.
-    ///
-    /// May be useful for deserializing lobby ids from
-    /// a network or save format.
-    pub fn from_raw(id: u64) -> LobbyId {
-        LobbyId(id)
-    }
-
-    /// Returns the raw 64 bit value of the lobby id
-    ///
-    /// May be useful for serializing lobby ids over a
-    /// network or to a save format.
-    pub fn raw(&self) -> u64 {
-        self.0
-    }
-}
-
 impl<Manager> Matchmaking<Manager> {
     pub fn request_lobby_list<F>(&self, cb: F)
     where
