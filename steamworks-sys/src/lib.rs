@@ -88,3 +88,49 @@ pub struct GlobalAchievementPercentagesReady_t {
     pub m_nGameID: u64,
     pub m_eResult: EResult,
 }
+
+// Friends and utils callback structures, copied from the upstream bindgen output.
+// Steam packs callbacks to 4 bytes everywhere except Windows, which only matters for 64-bit fields.
+
+/// Callback for persona state changes
+#[cfg_attr(target_os = "windows", repr(C))]
+#[cfg_attr(not(target_os = "windows"), repr(C, packed(4)))]
+#[derive(Debug, Copy, Clone)]
+pub struct PersonaStateChange_t {
+    pub m_ulSteamID: uint64,
+    pub m_nChangeFlags: ::std::os::raw::c_int,
+}
+
+/// Callback for the overlay being opened or closed
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct GameOverlayActivated_t {
+    pub m_bActive: uint8,
+    pub m_bUserInitiated: bool,
+    pub m_nAppID: AppId_t,
+    pub m_dwOverlayPID: uint32,
+}
+
+/// Callback for a lobby join requested through the friends list
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GameLobbyJoinRequested_t {
+    pub m_steamIDLobby: CSteamID,
+    pub m_steamIDFriend: CSteamID,
+}
+
+/// Callback for ShowGamepadTextInput
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct GamepadTextInputDismissed_t {
+    pub m_bSubmitted: bool,
+    pub m_unSubmittedText: uint32,
+    pub m_unAppID: AppId_t,
+}
+
+/// Callback for ShowFloatingGamepadTextInput
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct FloatingGamepadTextInputDismissed_t {
+    pub _address: u8,
+}

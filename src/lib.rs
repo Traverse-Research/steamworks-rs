@@ -22,7 +22,7 @@ use serde::{Deserialize, Serialize};
 pub use crate::app::*;
 pub use crate::callback::*;
 pub use crate::error::*;
-// pub use crate::friends::*;
+pub use crate::friends::*;
 // pub use crate::input::*;
 // pub use crate::matchmaking::*;
 // pub use crate::matchmaking_servers::*;
@@ -34,12 +34,12 @@ pub use crate::error::*;
 // pub use crate::ugc::*;
 // pub use crate::user::*;
 pub use crate::user_stats::*;
-// pub use crate::utils::*;
+pub use crate::utils::*;
 
 mod app;
 mod callback;
 mod error;
-// mod friends;
+mod friends;
 // mod input;
 // mod matchmaking;
 // mod matchmaking_servers;
@@ -57,7 +57,7 @@ mod error;
 // mod ugc;
 // mod user;
 mod user_stats;
-// mod utils;
+mod utils;
 
 pub type SResult<T> = Result<T, SteamError>;
 
@@ -289,17 +289,17 @@ where
         unsafe { register_callback(&self.inner, f) }
     }
 
-    // /// Returns an accessor to the steam utils interface
-    // pub fn utils(&self) -> Utils<Manager> {
-    //     unsafe {
-    //         let utils = sys::SteamAPI_SteamUtils_v010();
-    //         debug_assert!(!utils.is_null());
-    //         Utils {
-    //             utils: utils,
-    //             _inner: self.inner.clone(),
-    //         }
-    //     }
-    // }
+    /// Returns an accessor to the steam utils interface
+    pub fn utils(&self) -> Utils<Manager> {
+        unsafe {
+            let utils = self.inner.lib.SteamAPI_SteamUtils_v010();
+            debug_assert!(!utils.is_null());
+            Utils {
+                utils: utils,
+                inner: self.inner.clone(),
+            }
+        }
+    }
 
     // /// Returns an accessor to the steam matchmaking interface
     // pub fn matchmaking(&self) -> Matchmaking<Manager> {
@@ -361,17 +361,17 @@ where
         }
     }
 
-    // /// Returns an accessor to the steam friends interface
-    // pub fn friends(&self) -> Friends<Manager> {
-    //     unsafe {
-    //         let friends = sys::SteamAPI_SteamFriends_v017();
-    //         debug_assert!(!friends.is_null());
-    //         Friends {
-    //             friends: friends,
-    //             inner: self.inner.clone(),
-    //         }
-    //     }
-    // }
+    /// Returns an accessor to the steam friends interface
+    pub fn friends(&self) -> Friends<Manager> {
+        unsafe {
+            let friends = self.inner.lib.SteamAPI_SteamFriends_v017();
+            debug_assert!(!friends.is_null());
+            Friends {
+                friends: friends,
+                inner: self.inner.clone(),
+            }
+        }
+    }
 
     // /// Returns an accessor to the steam input interface
     // pub fn input(&self) -> Input<Manager> {
@@ -528,6 +528,31 @@ impl Drop for ClientManager {
         unsafe {
             self.lib.SteamAPI_Shutdown();
         }
+    }
+}
+
+/// A lobby's steam id
+///
+/// Lives here rather than in `matchmaking` because `friends` uses it while `matchmaking` is disabled.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+pub struct LobbyId(pub(crate) u64);
+
+impl LobbyId {
+    /// Creates a `LobbyId` from a raw 64 bit value.
+    ///
+    /// May be useful for deserializing lobby ids from
+    /// a network or save format.
+    pub fn from_raw(id: u64) -> LobbyId {
+        LobbyId(id)
+    }
+
+    /// Returns the raw 64 bit value of the lobby id
+    ///
+    /// May be useful for serializing lobby ids over a
+    /// network or to a save format.
+    pub fn raw(&self) -> u64 {
+        self.0
     }
 }
 

@@ -1,5 +1,6 @@
 use super::*;
 
+use lazy_static::lazy_static;
 use std::ffi::CStr;
 use std::os::raw::c_char;
 use std::panic;
@@ -9,7 +10,7 @@ use std::sync::RwLock;
 /// Access to the steam utils interface
 pub struct Utils<Manager> {
     pub(crate) utils: *mut sys::ISteamUtils,
-    pub(crate) _inner: Arc<Inner<Manager>>,
+    pub(crate) inner: Arc<Inner<Manager>>,
 }
 
 #[derive(Clone, Debug)]
@@ -143,13 +144,13 @@ unsafe extern "C" fn c_warning_callback(level: i32, msg: *const c_char) {
 impl<Manager> Utils<Manager> {
     /// Returns the app ID of the current process
     pub fn app_id(&self) -> AppId {
-        unsafe { AppId(sys::SteamAPI_ISteamUtils_GetAppID(self.utils)) }
+        unsafe { AppId(self.inner.lib.SteamAPI_ISteamUtils_GetAppID(self.utils)) }
     }
 
     /// Returns the country code of the current user based on their IP
     pub fn ip_country(&self) -> String {
         unsafe {
-            let ipcountry = sys::SteamAPI_ISteamUtils_GetIPCountry(self.utils);
+            let ipcountry = self.inner.lib.SteamAPI_ISteamUtils_GetIPCountry(self.utils);
             let ipcountry = CStr::from_ptr(ipcountry);
             ipcountry.to_string_lossy().into_owned()
         }
@@ -157,7 +158,11 @@ impl<Manager> Utils<Manager> {
 
     /// Returns whether or not the overlay is enabled in Steam
     pub fn is_overlay_enabled(&self) -> bool {
-        unsafe { sys::SteamAPI_ISteamUtils_IsOverlayEnabled(self.utils) }
+        unsafe {
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_IsOverlayEnabled(self.utils)
+        }
     }
 
     /// Returns the language the steam client is currently
@@ -166,7 +171,10 @@ impl<Manager> Utils<Manager> {
     /// Generally you want `Apps::current_game_language` instead of this
     pub fn ui_language(&self) -> String {
         unsafe {
-            let lang = sys::SteamAPI_ISteamUtils_GetSteamUILanguage(self.utils);
+            let lang = self
+                .inner
+                .lib
+                .SteamAPI_ISteamUtils_GetSteamUILanguage(self.utils);
             let lang = CStr::from_ptr(lang);
             lang.to_string_lossy().into_owned()
         }
@@ -175,7 +183,11 @@ impl<Manager> Utils<Manager> {
     /// Returns the current real time on the Steam servers
     /// in Unix epoch format (seconds since 1970/1/1 UTC).
     pub fn get_server_real_time(&self) -> u32 {
-        unsafe { sys::SteamAPI_ISteamUtils_GetServerRealTime(self.utils) }
+        unsafe {
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_GetServerRealTime(self.utils)
+        }
     }
 
     /// Sets the position on the screen where popups from the steam overlay
@@ -192,7 +204,9 @@ impl<Manager> Utils<Manager> {
                     sys::ENotificationPosition::k_EPositionBottomRight
                 }
             };
-            sys::SteamAPI_ISteamUtils_SetOverlayNotificationPosition(self.utils, position);
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_SetOverlayNotificationPosition(self.utils, position);
         }
     }
 
@@ -211,7 +225,9 @@ impl<Manager> Utils<Manager> {
             .expect("warning func lock poisoned");
         *lock = Some(Box::new(cb));
         unsafe {
-            sys::SteamAPI_ISteamUtils_SetWarningMessageHook(self.utils, Some(c_warning_callback));
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_SetWarningMessageHook(self.utils, Some(c_warning_callback));
         }
     }
 
@@ -227,18 +243,24 @@ impl<Manager> Utils<Manager> {
             let len = dismissed_data.submitted_text_len?;
             let mut buf = vec![0u8; len as usize];
 
-            sys::SteamAPI_ISteamUtils_GetEnteredGamepadTextInput(
-                self.utils,
-                buf.as_mut_ptr() as *mut i8,
-                len,
-            )
-            .then(|| String::from_utf8(buf).expect("Steamworks returned invalid UTF-8 string"))
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_GetEnteredGamepadTextInput(
+                    self.utils,
+                    buf.as_mut_ptr() as *mut i8,
+                    len,
+                )
+                .then(|| String::from_utf8(buf).expect("Steamworks returned invalid UTF-8 string"))
         }
     }
 
     /// Checks if Steam is running on a Steam Deck device.
     pub fn is_steam_running_on_steam_deck(&self) -> bool {
-        unsafe { sys::SteamAPI_ISteamUtils_IsSteamRunningOnSteamDeck(self.utils) }
+        unsafe {
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_IsSteamRunningOnSteamDeck(self.utils)
+        }
     }
 
     /// Activates the Big Picture text input dialog which only supports gamepad input.
@@ -257,8 +279,8 @@ impl<Manager> Utils<Manager> {
         unsafe {
             let description = CString::new(description).unwrap();
             let existing_text = existing_text.map(|s| CString::new(s).unwrap());
-            register_callback(&self._inner, dismissed_cb);
-            sys::SteamAPI_ISteamUtils_ShowGamepadTextInput(
+            register_callback(&self.inner, dismissed_cb);
+            self.inner.lib.SteamAPI_ISteamUtils_ShowGamepadTextInput(
                 self.utils,
                 input_mode.into(),
                 input_line_mode.into(),
@@ -291,17 +313,19 @@ impl<Manager> Utils<Manager> {
         F: FnMut() + 'static + Send, // TODO: Support FnOnce callbacks
     {
         unsafe {
-            register_callback(&self._inner, move |_: FloatingGamepadTextInputDismissed| {
+            register_callback(&self.inner, move |_: FloatingGamepadTextInputDismissed| {
                 dismissed_cb();
             });
-            sys::SteamAPI_ISteamUtils_ShowFloatingGamepadTextInput(
-                self.utils,
-                keyboard_mode.into(),
-                x,
-                y,
-                width,
-                height,
-            )
+            self.inner
+                .lib
+                .SteamAPI_ISteamUtils_ShowFloatingGamepadTextInput(
+                    self.utils,
+                    keyboard_mode.into(),
+                    x,
+                    y,
+                    width,
+                    height,
+                )
         }
     }
 }
