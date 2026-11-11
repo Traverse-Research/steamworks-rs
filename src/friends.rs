@@ -75,6 +75,13 @@ bitflags! {
     }
 }
 
+pub enum OverlayToWebPageMode {
+    Default,
+    /// Hides the other overlay windows. Closing the browser closes the overlay, and closing the
+    /// overlay closes the browser.
+    Modal,
+}
+
 pub enum OverlayToStoreFlag {
     None = 0,
     AddToCart = 1,
@@ -172,16 +179,24 @@ impl<Manager> Friends<Manager> {
     }
 
     // I don't know why these are part of friends either
-    pub fn activate_game_overlay_to_web_page(&self, url: &str) {
+    pub fn activate_game_overlay_to_web_page(&self, url: &str, mode: OverlayToWebPageMode) {
+        let mode = match mode {
+            OverlayToWebPageMode::Default => {
+                sys::EActivateGameOverlayToWebPageMode::k_EActivateGameOverlayToWebPageMode_Default
+            }
+            OverlayToWebPageMode::Modal => {
+                sys::EActivateGameOverlayToWebPageMode::k_EActivateGameOverlayToWebPageMode_Modal
+            }
+        };
         unsafe {
             let url = CString::new(url).unwrap();
             self.inner
                 .lib
                 .SteamAPI_ISteamFriends_ActivateGameOverlayToWebPage(
-                self.friends,
-                url.as_ptr() as *const _,
-                sys::EActivateGameOverlayToWebPageMode::k_EActivateGameOverlayToWebPageMode_Default,
-            );
+                    self.friends,
+                    url.as_ptr() as *const _,
+                    mode,
+                );
         }
     }
 
